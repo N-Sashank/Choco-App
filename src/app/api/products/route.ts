@@ -5,6 +5,7 @@ import {db} from "@/app/db/index"
 import { products } from "@/app/db/schema";
 
 import fs from 'fs'
+import { desc } from "drizzle-orm";
 
 
 
@@ -51,4 +52,15 @@ export async function POST(request:Request) {
     }
 
     return Response.json({message:"ok"},{status:201})
+}
+
+
+export async function GET(){
+    try {
+        const productList= await db.select().from(products).orderBy(desc(products.id));
+        return Response.json(productList)
+    } catch (error) {
+        return Response.json({message:"cannot fetch product list"},{status:500})
+        
+    }
 }

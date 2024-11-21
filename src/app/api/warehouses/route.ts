@@ -1,5 +1,5 @@
 import { db } from "@/app/db";
-import { warehouses } from "@/app/db/schema";
+import { warehousesTable } from "@/app/db/schema";
 import { warehouseSchema } from "@/validator/warehouseSchema";
 
 
@@ -15,10 +15,21 @@ export async function POST(request:Request) {
     }
 
     try {
-        await db.insert(warehouses).values({...validateData})
+        await db.insert(warehousesTable).values({...validateData})
         return Response.json({message:"warehouse added"})
     } catch (error) {
         return Response.json({message:"insert to db failed" ,error},{status:500})
+    }
+
+}
+
+
+export async function GET(response:Response){
+    try {
+        const warehousesList=await db.select().from(warehousesTable)
+        return Response.json(warehousesList);
+    } catch (error) {
+        return Response.json({message :"cannot get warehouses list",error},{status:500});
     }
 
 }

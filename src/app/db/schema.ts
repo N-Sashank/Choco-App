@@ -1,4 +1,4 @@
-import { index, integer,  pgTable, serial, text, timestamp ,varchar} from 'drizzle-orm/pg-core';
+import { index, integer, PgTable, pgTable, serial, text, timestamp ,varchar} from 'drizzle-orm/pg-core';
 import {sql} from 'drizzle-orm'
 
 
@@ -19,7 +19,7 @@ export const userTable= pgTable('users',{
 
 
 
-export const products = pgTable('products',{
+export const productsTable = pgTable('products',{
     id:serial('id').primaryKey(),
     name:varchar('name',{length:100}).notNull(),
     image:text('imageurl'),
@@ -32,7 +32,7 @@ export const products = pgTable('products',{
 });
 
 
-export const warehouses = pgTable('warehouses',{
+export const warehousesTable = pgTable('warehouses',{
     id:serial('id').primaryKey(),
     name:varchar('name',{length:100}).notNull(),
     pincode:varchar('pincode',{length:6}).notNull(),
@@ -46,6 +46,21 @@ export const warehouses = pgTable('warehouses',{
         pincodeIdx: index('pincodeIdx').on(table.pincode)
     }
 });
+
+
+export const OrdersTable=pgTable('orders',{
+    id:serial('id').primaryKey()
+
+})
+export const delivery_personsTable=pgTable('delivery_persons',{
+    id:serial('id').primaryKey(),
+    name:varchar('name',{length:100}).notNull(),
+    phone:varchar('phone',{length:13}).notNull(),
+    warehouse_id:integer("warehouse_id").references(()=>warehousesTable.id,{onUpdate:'cascade'}),
+    order_id:integer('order_id').references(()=>OrdersTable.id,{onUpdate:'set null'}),
+    updatedat:timestamp('upadated_at').notNull().default(sql`CURRENT_TIMESTAMP`),
+    createdat:timestamp('created_at').notNull().default(sql`CURRENT_TIMESTAMP`)
+})
 
 
 

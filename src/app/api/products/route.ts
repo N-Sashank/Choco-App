@@ -2,7 +2,7 @@ import { productSchema } from "@/validator/productSchema";
 import { writeFile } from "node:fs";
 import path from "node:path";
 import {db} from "@/app/db/index"
-import { products } from "@/app/db/schema";
+import { productsTable } from "@/app/db/schema";
 
 import fs from 'fs'
 import {  desc } from "drizzle-orm";
@@ -38,7 +38,7 @@ export async function POST(request:Request) {
 
 
     try {
-     await db.insert(products).values({...validatedata,image:filename});  
+     await db.insert(productsTable).values({...validatedata,image:filename});  
    
     } catch (error) {
 
@@ -57,8 +57,8 @@ export async function POST(request:Request) {
 
 export async function GET(){
     try {
-        const productList= await db.select().from(products).orderBy(desc(products.id));
-        return Response.json(productList)
+        const productList= await db.select().from(productsTable).orderBy(desc(productsTable.id));
+        return Response.json(productList,{status:201})
     } catch (error) {
         return Response.json({message:"cannot fetch product list"},{status:500})
         

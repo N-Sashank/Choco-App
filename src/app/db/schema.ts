@@ -1,4 +1,4 @@
-import { integer, PgTable, pgTable, serial, text, timestamp ,varchar} from 'drizzle-orm/pg-core';
+import { index, integer,  pgTable, serial, text, timestamp ,varchar} from 'drizzle-orm/pg-core';
 import {sql} from 'drizzle-orm'
 
 
@@ -29,6 +29,22 @@ export const products = pgTable('products',{
     createdat:timestamp('created_at').notNull().default(sql`CURRENT_TIMESTAMP`)
 
 
+});
+
+
+export const warehouses = pgTable('warehouses',{
+    id:serial('id').primaryKey(),
+    name:varchar('name',{length:100}).notNull(),
+    pincode:varchar('pincode',{length:6}).notNull(),
+    updatedat:timestamp('upadated_at').notNull().default(sql`CURRENT_TIMESTAMP`),
+    createdat:timestamp('created_at').notNull().default(sql`CURRENT_TIMESTAMP`)
+
+
+},
+(table)=>{
+    return{
+        pincodeIdx: index('pincodeIdx').on(table.pincode)
+    }
 });
 
 

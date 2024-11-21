@@ -7,7 +7,7 @@ export async function GET(request:Request,{params}:{params:{id:string}}){
     try{
      const product=await db.select().from(products).where(eq(products.id,Number(id))).limit(1);
 
-        if(!product){
+        if(!product.length){
             return Response.json({message:" product 1 not found"},{status:500})
         }
         else{
@@ -18,8 +18,6 @@ export async function GET(request:Request,{params}:{params:{id:string}}){
     catch (error){
         return Response.json({message:"product not found"})
     }
-
-     
-   
         
 };
+

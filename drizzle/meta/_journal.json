@@ -15,6 +15,20 @@
       "when": 1732090583109,
       "tag": "0001_careless_inhumans",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1732174796566,
+      "tag": "0002_oval_peter_quill",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1732175429339,
+      "tag": "0003_lame_roxanne_simpson",
+      "breakpoints": true
     }
   ]
 }

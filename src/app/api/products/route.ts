@@ -5,7 +5,7 @@ import {db} from "@/app/db/index"
 import { products } from "@/app/db/schema";
 
 import fs from 'fs'
-import { desc } from "drizzle-orm";
+import {  desc } from "drizzle-orm";
 
 
 
@@ -64,3 +64,5 @@ export async function GET(){
         
     }
 }
+
+

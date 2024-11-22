@@ -36,6 +36,20 @@
       "when": 1732188339276,
       "tag": "0004_shallow_songbird",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1732238859680,
+      "tag": "0005_mighty_meltdown",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1732239024355,
+      "tag": "0006_sharp_the_stranger",
+      "breakpoints": true
     }
   ]
 }

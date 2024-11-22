@@ -1,5 +1,6 @@
-import { index, integer, PgTable, pgTable, serial, text, timestamp ,varchar} from 'drizzle-orm/pg-core';
+import { index, integer, pgTable, serial, text, timestamp ,varchar} from 'drizzle-orm/pg-core';
 import {sql} from 'drizzle-orm'
+import { number } from 'zod';
 
 
 export const userTable= pgTable('users',{
@@ -56,10 +57,21 @@ export const delivery_personsTable=pgTable('delivery_persons',{
     id:serial('id').primaryKey(),
     name:varchar('name',{length:100}).notNull(),
     phone:varchar('phone',{length:13}).notNull(),
-    warehouse_id:integer("warehouse_id").references(()=>warehousesTable.id,{onUpdate:'cascade'}),
-    order_id:integer('order_id').references(()=>OrdersTable.id,{onUpdate:'set null'}),
+    warehouse_id:integer("warehouse_id").references(()=>warehousesTable.id,{onDelete:'cascade'}),
+    order_id:integer('order_id').references(()=>OrdersTable.id,{onDelete:'set null'}),
     updatedat:timestamp('upadated_at').notNull().default(sql`CURRENT_TIMESTAMP`),
     createdat:timestamp('created_at').notNull().default(sql`CURRENT_TIMESTAMP`)
+})
+
+export const inventoryTable=pgTable('inventory',{
+    id:serial('id').primaryKey(),
+    sku:varchar('sku',{length:8}).unique().notNull(),
+    order_id:integer('order_id').references(()=>OrdersTable.id,{onDelete:"set null"}),
+    product_id:integer('produt_id').references(()=>productsTable.id,{onDelete:'cascade'}).notNull(),
+    warehouse_id:integer('warehouse_id').references(()=>warehousesTable.id,{onDelete:'cascade'}).notNull(),
+    updatedat:timestamp('upadated_at').notNull().default(sql`CURRENT_TIMESTAMP`),
+    createdat:timestamp('created_at').notNull().default(sql`CURRENT_TIMESTAMP`)
+
 })
 
 

@@ -4,6 +4,7 @@ import { deliverypersonSchema } from "@/validator/deliverypersonSchema";
 import { desc, eq } from "drizzle-orm";
 
 export async function POST(request:Request) {
+    //auth
     const data=await request.json()
 
     let validatedata; 

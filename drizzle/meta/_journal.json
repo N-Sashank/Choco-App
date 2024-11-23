@@ -50,6 +50,13 @@
       "when": 1732239024355,
       "tag": "0006_sharp_the_stranger",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1732325772977,
+      "tag": "0007_shallow_enchantress",
+      "breakpoints": true
     }
   ]
 }

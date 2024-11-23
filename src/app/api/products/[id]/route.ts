@@ -1,5 +1,5 @@
-import { db } from "@/app/db"
-import { productsTable } from "@/app/db/schema"
+import { db } from "@/db"
+import { productsTable } from "@/db/schema"
 import { eq } from "drizzle-orm";
 
 export async function GET(request:Request,{params}:{params:{id:string}}){

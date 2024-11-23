@@ -1,5 +1,5 @@
-import { db } from "@/app/db";
-import { warehousesTable } from "@/app/db/schema";
+import { db } from "@/db";
+import { warehousesTable } from "@/db/schema";
 import { warehouseSchema } from "@/validator/warehouseSchema";
 
 

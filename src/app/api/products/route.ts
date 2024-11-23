@@ -1,8 +1,8 @@
 import { productSchema } from "@/validator/productSchema";
 import { writeFile } from "node:fs";
 import path from "node:path";
-import {db} from "@/app/db/index"
-import { productsTable } from "@/app/db/schema";
+import {db} from "@/db/index"
+import { productsTable } from "@/db/schema";
 
 import fs from 'fs'
 import {  desc } from "drizzle-orm";

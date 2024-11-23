@@ -1,12 +1,11 @@
 import { index, integer, pgTable, serial, text, timestamp ,varchar} from 'drizzle-orm/pg-core';
 import {sql} from 'drizzle-orm'
-import { number } from 'zod';
 
 
-export const userTable= pgTable('users',{
+export const usersTable= pgTable('users',{
     id:serial('user_id').primaryKey(),
     fname:varchar('fname',{length:100}).notNull(),
-    lname:varchar('lname',{length:100}).notNull(),
+    lname:varchar('lname',{length:100}),
     email:varchar('email',{length:100}).unique().notNull(),
     provider:varchar('provider',{length:20}).notNull(),
     external_id:varchar('external_id',{length:100}).notNull(),

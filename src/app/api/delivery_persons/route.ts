@@ -1,5 +1,5 @@
-import { db } from "@/app/db";
-import { delivery_personsTable, warehousesTable } from "@/app/db/schema";
+import { db } from "@/db";
+import { delivery_personsTable, warehousesTable } from "@/db/schema";
 import { deliverypersonSchema } from "@/validator/deliverypersonSchema";
 import { desc, eq } from "drizzle-orm";
 

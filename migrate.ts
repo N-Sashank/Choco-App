@@ -1,4 +1,4 @@
-import { client, db } from "@/app/db/index";
+import { client, db } from "@/db/index";
 import { migrate } from "drizzle-orm/postgres-js/migrator"
 
 async function main() {

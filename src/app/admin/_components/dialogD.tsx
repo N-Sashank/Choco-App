@@ -1,0 +1,117 @@
+"use client";
+import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { useState } from "react";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import axios from "axios";
+
+function Delivery_personDialog() {
+  const [Dname, setDname] = useState(" ");
+  const [phone, setphone] = useState(" ");
+  const [warehouse_id, setwarehouse_id] = useState(" ");
+
+  const addDelivery_person = async() => {
+    try {
+      // console.log(typeof(Dname),typeof(phone),typeof(Number(warehouse_id)))
+      const data={
+        name:Dname,
+        phone,
+        warehouse_id:Number(warehouse_id)
+      }
+      
+      const response = await axios.post('http://localhost:3000/api/delivery_persons', {
+       data 
+      })
+      .then(function (response) {
+        
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+      
+  
+      return response;
+    } catch (error) {
+      console.log(error)
+      
+    }
+  };
+  return (
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button className="rounded-xl text-black" variant="outline">
+          Add Delivery person
+        </Button>
+      </DialogTrigger>
+      <DialogContent className="sm:max-w-[425px]">
+        <DialogHeader>
+          <DialogTitle></DialogTitle>
+          <DialogDescription>Add delivery person details</DialogDescription>
+        </DialogHeader>
+        <div className="grid gap-4 py-4">
+          <div className="grid grid-cols-4 items-center gap-4">
+            <Label htmlFor="name" className="text-right">
+              Name
+            </Label>
+            <Input
+              onChange={(e) => {
+                setDname(e.target.value);
+              }}
+              autoComplete="off"
+              id="name"
+              defaultValue=" "
+              className="col-span-3"
+            />
+          </div>
+          <div className="grid grid-cols-4 items-center gap-4">
+            <Label htmlFor="phone" className="text-right">
+              Phone
+            </Label>
+            <Input
+              onChange={(e) => {
+                setphone(e.target.value);
+              }}
+              autoComplete="off"
+              id="phone"
+              defaultValue="+91"
+              className="col-span-3"
+            />
+          </div>
+          <div className="grid grid-cols-4 items-center gap-4">
+            <Label htmlFor="warehouse_id" className="text-right">
+              Warehouse_id
+            </Label>
+            <Input
+              onChange={(e) => {
+                setwarehouse_id(e.target.value);
+              }}
+              autoComplete="off"
+              id="warehouse_id"
+              defaultValue=" "
+              className="col-span-3"
+            />
+          </div>
+        </div>
+        <DialogFooter>
+          <Button
+            className=" rounded-xl text-black font-bold hover:bg-yellow-600"
+            type="submit"
+            onClick={addDelivery_person}
+          >
+            ADD
+          </Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  );
+}
+export default Delivery_personDialog;

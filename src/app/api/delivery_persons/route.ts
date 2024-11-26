@@ -6,10 +6,12 @@ import { desc, eq } from "drizzle-orm";
 export async function POST(request:Request) {
     //auth
     const data=await request.json()
+   
 
     let validatedata; 
     try {
-        validatedata=await deliverypersonSchema.parse(data)
+        validatedata=await deliverypersonSchema.parse(data.data)
+        
       
     } catch (error) {
         return Response.json({message:"invalid data",error},{status:400});

@@ -6,12 +6,16 @@ import { desc, eq } from "drizzle-orm";
 export async function POST(request:Request){
     //auth
     const data=await request.json()
+    // console.log(data.data)
     let validatedata;
     try {
-        validatedata=await inventorySchema.parse(data)
+        
+        validatedata=await inventorySchema.parse(data.data)
+        
 
     } catch (error) {
-        return Response.json({message:'invalid data'},{status:400})
+        console.log(error)
+        return Response.json({message:'invalid data',error},{status:400})
 
     }
 
@@ -34,6 +38,7 @@ export async function GET(){
             {
                 id:inventoryTable.id,
                 sku:inventoryTable.sku,
+                product_id:productsTable.id,
                 product:productsTable.name,
                 warehouse:warehousesTable.name
 

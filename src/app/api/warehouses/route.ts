@@ -9,7 +9,7 @@ export async function POST(request:Request) {
     const data= await request.json();
     let validateData;
     try {
-        validateData=await warehouseSchema.parse(data)
+        validateData=await warehouseSchema.parse(data.data)
     } catch (error) {
         return Response.json({message:error},{status:400})
     }

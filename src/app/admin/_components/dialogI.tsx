@@ -19,7 +19,7 @@ function InventoryDialog() {
   const [warehouse_id, setwarehouse_id] = useState(" ");
   const [sku, setsku] = useState(" ");
 
-  const addDelivery_person = async () => {
+  const addInventory = async () => {
     try {
       console.log(typeof(Number(Pid)),typeof(sku),typeof(Number(warehouse_id)))
       const data = {
@@ -34,7 +34,7 @@ function InventoryDialog() {
           data,
         })
         .then(function (response) {
-            // console.log(response)
+          console.log(response)
 
         })
         .catch(function (error) {
@@ -106,7 +106,7 @@ function InventoryDialog() {
           <Button
             className=" rounded-xl text-black font-bold hover:bg-yellow-600"
             type="submit"
-            onClick={addDelivery_person}
+            onClick={addInventory}
           >
             ADD
           </Button>

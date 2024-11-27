@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import axios from "axios";
+
 import TableComponent from "./component";
+import ProductsDialog from "../_components/dialogP";
 
 export default function productsPage() {
  
@@ -17,6 +17,9 @@ export default function productsPage() {
             </h5>
           </div>
           <TableComponent />
+        </div>
+        <div className="flex justify-end items-center  ">
+          <ProductsDialog />
         </div>
       </div>
     </>

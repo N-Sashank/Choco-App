@@ -18,30 +18,27 @@ function WarehousesDialog() {
   const [Wname, setWname] = useState(" ");
   const [pincode, setpincode] = useState(" ");
 
-  const addwarehouse = async() => {
+  const addwarehouse = async () => {
     try {
-      console.log(typeof(Wname),typeof(pincode))
-      const data={
-        name:Wname,
-        pincode
-      }
-    //   console.log(data)
-      
-      const response = await axios.post('http://localhost:3000/api/warehouses', {
-       data 
-      })
-      .then(function (response) {
-       
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-      
-  
+      // console.log(typeof(Wname),typeof(pincode))
+      const data = {
+        name: Wname,
+        pincode,
+      };
+      //   console.log(data)
+
+      const response = await axios
+        .post("http://localhost:3000/api/warehouses", {
+          data,
+        })
+        .then(function (response) {console.log(response)})
+        .catch(function (error) {
+          console.log(error.response.data.message.issues[0]);
+        });
+
       return response;
     } catch (error) {
-      console.log(error)
-      
+      console.log(error);
     }
   };
   return (
@@ -85,7 +82,6 @@ function WarehousesDialog() {
               className="col-span-3"
             />
           </div>
-
         </div>
         <DialogFooter>
           <Button

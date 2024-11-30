@@ -28,7 +28,7 @@ const TableComponent = (title: any) => {
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
               <th scope="col" className="px-6 py-3">
-                Warehouse Id
+                Warehouse Name (id)
               </th>
               <th scope="col" className="px-6 py-3">
                  Pincode
@@ -46,9 +46,9 @@ const TableComponent = (title: any) => {
               >
                 <th
                   scope="row"
-                  className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                  className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white flex items-center justify-start gap-1"
                 >
-                  {item.name}
+                  {item.name}<p className="font-thin text-gray-500">(id:{item.id})</p>
                 </th>
                 <td className="px-6 py-4">{item.pincode}</td>
               </tr>

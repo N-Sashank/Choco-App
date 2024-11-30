@@ -1,46 +1,39 @@
 import React from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { clientProductSchema } from "@/validator/clientProductSchema";
-import { number, z } from "zod";
+import { warehouseSchema } from "@/validator/warehouseSchema";
+import { z } from "zod";
 import {
   Form,
   FormControl,
-  //   FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import axios from "axios";
 import { useToast } from "@/hooks/use-toast";
 
-export type FormValues = z.input<typeof clientProductSchema>;
+export type FormValues = z.input<typeof warehouseSchema>;
 
-const productForm = () => {
+const WarehouseForm = () => {
   const { toast } = useToast();
-  const form = useForm<z.infer<typeof clientProductSchema>>({
-    resolver: zodResolver(clientProductSchema),
+  const form = useForm<z.infer<typeof warehouseSchema>>({
+    resolver: zodResolver(warehouseSchema),
     defaultValues: {
       name: "",
-      description: "",
-      price: 0,
+      pincode: "",
     },
   });
-
-  const fileref = form.register("image");
 
   const handleSubmit = (values: FormValues) => {
     try {
       axios
-        .postForm("http://localhost:3000/api/products", {
-          name: values.name.trim(),
-          description: values.description.trim(),
-          image: (values.image as FileList)[0],
-          price: values.price,
+        .post("http://localhost:3000/api/warehouses", {
+          name: values.name,
+          pincode: values.pincode,
         })
         .then(function (response) {
           const date = Date();
@@ -69,7 +62,7 @@ const productForm = () => {
             <FormItem>
               <FormLabel>Name</FormLabel>
               <FormControl>
-                <Input autoComplete="off" placeholder="" {...field} />
+                <Input required autoComplete="off" placeholder="" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -77,57 +70,28 @@ const productForm = () => {
         />
         <FormField
           control={form.control}
-          name="description"
+          name="pincode"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Description</FormLabel>
-              <FormControl>
-                <Textarea autoComplete="off" placeholder="" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="price"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Price</FormLabel>
+              <FormLabel>Pincode</FormLabel>
               <FormControl>
                 <Input
+                  required
                   type="number"
                   autoComplete="off"
                   placeholder=""
                   {...field}
-                  onChange={(e) => {
-                    const value = parseFloat(e.target.value);
-
-                    field.onChange(value);
-                  }}
                 />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-        <FormField
-          control={form.control}
-          name="image"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Product Image</FormLabel>
-              <FormControl>
-                <Input required autoComplete="off" type="file" {...fileref} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+
         <Button type="submit">Submit</Button>
       </form>
     </Form>
   );
 };
 
-export default productForm;
+export default WarehouseForm;

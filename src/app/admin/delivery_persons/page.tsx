@@ -1,11 +1,12 @@
 "use client";
 
+
 import { useEffect, useState } from "react";
 import axios from "axios";
 import TableComponent from "./component";
 import Delivery_personDialog from "../_components/dialogD";
 export default function delivery_personsPage() {
-  
+
   const [warehouses, setwarehouses] = useState([
     {
       id: " ",
@@ -22,7 +23,7 @@ export default function delivery_personsPage() {
 
     setwarehouses(data.data);
   }
-  useEffect(() => {
+  useEffect(() => { 
     getData();
   }, []);
 
@@ -36,8 +37,8 @@ export default function delivery_personsPage() {
               className=" my-4 w-full  flex flex-col p-6  border border-gray-200 rounded-xl shadow bg-amber-50 hover:bg-amber-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
              >
               <div className=" flex items-center justify-center py-1 ">
-                <h5 className="mb-2 text-2xl font-bold tracking-tight text-stone-950 dark:text-white">
-                  {item.name}
+                <h5 className="mb-2 text-2xl font-bold tracking-tight text-stone-950 dark:text-white flex items-center justify-start gap-1">
+                  {item.name}<p className="font-thin text-sm text-gray-500">(id:{item.id})</p>
                 </h5>
               </div>
              <TableComponent title={item.name}/>

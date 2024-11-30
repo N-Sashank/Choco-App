@@ -10,7 +10,7 @@ import { desc } from "drizzle-orm";
 export async function POST(request: Request) {
   // console.log(request.json);
   const data = await request.formData();
-  // console.log(data);
+  console.log(data);
   let validatedata;
   try {
     validatedata = productSchema.parse({
@@ -46,7 +46,7 @@ export async function POST(request: Request) {
   try {
     await db.insert(productsTable).values({ ...validatedata, image: filename });
 
-    return Response.json({ message: "product added" }, { status: 201 });
+    return Response.json({ message: "Product added" }, { status: 201 });
   } catch (error) {
     fs.unlink(filename, function (err: any) {
       if (err) throw err;

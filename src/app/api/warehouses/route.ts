@@ -5,18 +5,18 @@ import { warehouseSchema } from "@/validator/warehouseSchema";
 
 export async function POST(request:Request) {
     //auth
-
     const data= await request.json();
+    console.log(data)
     let validateData;
     try {
-        validateData=await warehouseSchema.parse(data.data)
+        validateData=await warehouseSchema.parse(data)
     } catch (error) {
-        return Response.json({message:error},{status:400})
+        return Response.json({message:"invalid type",error},{status:400})
     }
 
     try {
         await db.insert(warehousesTable).values({...validateData})
-        return Response.json({message:"warehouse added"})
+        return Response.json({message:"Warehouse added"})
     } catch (error) {
         return Response.json({message:"insert to db failed" ,error},{status:500})
     }

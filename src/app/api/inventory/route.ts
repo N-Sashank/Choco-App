@@ -6,11 +6,11 @@ import { desc, eq } from "drizzle-orm";
 export async function POST(request:Request){
     //auth
     const data=await request.json()
-    // console.log(data.data)
+    console.log(data)
     let validatedata;
     try {
         
-        validatedata=await inventorySchema.parse(data.data)
+        validatedata=await inventorySchema.parse(data)
         
 
     } catch (error) {
@@ -20,9 +20,15 @@ export async function POST(request:Request){
     }
 
     try {
-        await db.insert(inventoryTable).values(validatedata)
-        return Response.json({message:"inventory added"},{status:201})
+        const maindata={
+            sku:validatedata.sku,
+            product_id:Number(validatedata.product_id),
+            warehouse_id:Number(validatedata.warehouse_id)
+        }
+        await db.insert(inventoryTable).values(maindata)
+        return Response.json({message:"Inventory added"},{status:201})
     } catch (error) {
+        console.log(error)
         return Response.json({message:"db call failed",error},{status:500})
 
     }

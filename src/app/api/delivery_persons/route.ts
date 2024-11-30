@@ -6,17 +6,25 @@ import { desc, eq } from "drizzle-orm";
 export async function POST(request: Request) {
   //auth
   const data = await request.json();
+  console.log(data)
 
   let validatedata;
-  try {
-    validatedata = await deliverypersonSchema.parse(data.data);
+  try { 
+    validatedata = await deliverypersonSchema.parse(data);
   } catch (error) {
+    console.log(error)
     return Response.json({ message: "invalid data", error }, { status: 400 });
   }
+  
 
   try {
-    await db.insert(delivery_personsTable).values(validatedata);
-    return Response.json({ message: "delivery_person added" }, { status: 201 });
+    const maindata={
+      name:validatedata.name,
+      phone:validatedata.phone,
+      warehouse_id:Number(validatedata.warehouse_id)
+    }
+    await db.insert(delivery_personsTable).values(maindata);
+    return Response.json({ message: "Delivery person is added" }, { status: 201 });
   } catch (error) {
     return Response.json(
       { message: "data not inserted to db", error },

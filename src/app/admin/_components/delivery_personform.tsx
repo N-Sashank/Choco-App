@@ -1,46 +1,43 @@
 import React from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { clientProductSchema } from "@/validator/clientProductSchema";
-import { number, z } from "zod";
+import { deliverypersonSchema } from "@/validator/deliverypersonSchema";
+import { z } from "zod";
 import {
   Form,
   FormControl,
-  //   FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import axios from "axios";
 import { useToast } from "@/hooks/use-toast";
 
-export type FormValues = z.input<typeof clientProductSchema>;
+export type FormValues = z.input<typeof deliverypersonSchema>;
 
-const productForm = () => {
+const DeliveryPersonForm = () => {
   const { toast } = useToast();
-  const form = useForm<z.infer<typeof clientProductSchema>>({
-    resolver: zodResolver(clientProductSchema),
+  const form = useForm<z.infer<typeof deliverypersonSchema>>({
+    resolver: zodResolver(deliverypersonSchema),
     defaultValues: {
       name: "",
-      description: "",
-      price: 0,
+      phone: "+91",
+      warehouse_id: "",
     },
   });
 
-  const fileref = form.register("image");
-
   const handleSubmit = (values: FormValues) => {
+    // console.log(typeof(Number(values.warehouse_id)),values.warehouse_id)
+
     try {
       axios
-        .postForm("http://localhost:3000/api/products", {
+        .post("http://localhost:3000/api/delivery_persons", {
           name: values.name.trim(),
-          description: values.description.trim(),
-          image: (values.image as FileList)[0],
-          price: values.price,
+          phone: values.phone.trim(),
+          warehouse_id: values.warehouse_id,
         })
         .then(function (response) {
           const date = Date();
@@ -69,7 +66,7 @@ const productForm = () => {
             <FormItem>
               <FormLabel>Name</FormLabel>
               <FormControl>
-                <Input autoComplete="off" placeholder="" {...field} />
+                <Input required autoComplete="off" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -77,12 +74,14 @@ const productForm = () => {
         />
         <FormField
           control={form.control}
-          name="description"
+          name="phone"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Description</FormLabel>
+              <FormLabel className="flex gap-1 items-center justify-start">
+                Phone
+              </FormLabel>
               <FormControl>
-                <Textarea autoComplete="off" placeholder="" {...field} />
+                <Input required autoComplete="off" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -90,44 +89,24 @@ const productForm = () => {
         />
         <FormField
           control={form.control}
-          name="price"
+          name="warehouse_id"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Price</FormLabel>
+              <FormLabel className="flex gap-1 items-center justify-start">
+                Warehouse_id
+              </FormLabel>
               <FormControl>
-                <Input
-                  type="number"
-                  autoComplete="off"
-                  placeholder=""
-                  {...field}
-                  onChange={(e) => {
-                    const value = parseFloat(e.target.value);
+                <Input required type="number" autoComplete="off" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
 
-                    field.onChange(value);
-                  }}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="image"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Product Image</FormLabel>
-              <FormControl>
-                <Input required autoComplete="off" type="file" {...fileref} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
         <Button type="submit">Submit</Button>
       </form>
     </Form>
   );
 };
 
-export default productForm;
+export default DeliveryPersonForm;

@@ -15,6 +15,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import axios from "axios";
 import { useToast } from "@/hooks/use-toast";
+import { DialogTrigger } from "@radix-ui/react-dialog";
 
 export type FormValues = z.input<typeof inventorySchema>;
 
@@ -101,7 +102,9 @@ const InventoryForm = () => {
           )}
         />
 
-        <Button type="submit">Submit</Button>
+        <DialogTrigger>
+          <Button type="submit">Submit</Button>
+        </DialogTrigger>
       </form>
     </Form>
   );

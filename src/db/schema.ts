@@ -52,8 +52,8 @@ export const OrdersTable=pgTable('orders',{
 export const delivery_personsTable=pgTable('delivery_persons',{
     id:serial('id').primaryKey(),
     name:varchar('name',{length:100}).notNull(),
-    phone:varchar('phone',{length:13}).notNull(),
-    warehouse_id:integer("warehouse_id").references(()=>warehousesTable.id,{onDelete:'cascade'}),
+    phone:varchar('phone',{length:13}).notNull().unique(),
+    warehouse_id:integer("warehouse_id").notNull().references(()=>warehousesTable.id,{onDelete:'cascade'}),
     order_id:integer('order_id').references(()=>OrdersTable.id,{onDelete:'set null'}),
     updatedat:timestamp('upadated_at').notNull().default(sql`CURRENT_TIMESTAMP`),
     createdat:timestamp('created_at').notNull().default(sql`CURRENT_TIMESTAMP`)

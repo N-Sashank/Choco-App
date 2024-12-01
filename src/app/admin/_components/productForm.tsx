@@ -17,6 +17,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import axios from "axios";
 import { useToast } from "@/hooks/use-toast";
+import { DialogTrigger } from "@radix-ui/react-dialog";
 
 export type FormValues = z.input<typeof clientProductSchema>;
 
@@ -102,7 +103,6 @@ const productForm = () => {
                   {...field}
                   onChange={(e) => {
                     const value = parseFloat(e.target.value);
-
                     field.onChange(value);
                   }}
                 />
@@ -124,7 +124,9 @@ const productForm = () => {
             </FormItem>
           )}
         />
-        <Button type="submit">Submit</Button>
+        <DialogTrigger>
+          <Button type="submit">Submit</Button>
+        </DialogTrigger>
       </form>
     </Form>
   );

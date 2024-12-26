@@ -11,7 +11,7 @@ const Header = () => {
     </div>
     <div className=''>
       <ul className='flex justify-center gap-6 p-4 bg-white'>
-        <li className='text-yellow-700 hover:text-yellow-900 hover:underline '><Link href={"http://localhost:3000/admin"}>Home</Link></li>
+        <li className='text-yellow-700 hover:text-yellow-900 hover:underline '><Link href={"http://localhost:3000/"}>Home</Link></li>
         <li className='text-yellow-700 hover:text-yellow-900 hover:underline '><Link href={"http://localhost:3000/admin"}>Best Selling </Link></li>
         <li className='text-yellow-700 hover:text-yellow-900 hover:underline '><Link href={"http://localhost:3000/admin"}>Offers</Link></li>
         <li className='text-yellow-700 hover:text-yellow-900 hover:underline '><Link href={"http://localhost:3000/admin"}>Orders </Link></li>

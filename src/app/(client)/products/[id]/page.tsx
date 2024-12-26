@@ -1,7 +1,7 @@
 "use client";
-import { useParams } from "next/navigation";
+import { useParams, usePathname } from "next/navigation";
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Separator } from "@/components/ui/separator";
 import { orderSchema } from "@/validator/orderSchema";
 import Header from "../../client-components/header";
@@ -20,6 +20,8 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { useSession } from "next-auth/react";
+import Link from "next/link";
 
 const Single_productPage = () => {
   const params = useParams();
@@ -46,7 +48,7 @@ const Single_productPage = () => {
     resolver: zodResolver(orderSchema),
     defaultValues: {
       pincode: "",
-      quantity: 2,
+      quantity: 1,
       productId: Number(id),
       address: "",
     },
@@ -56,6 +58,19 @@ const Single_productPage = () => {
     console.log("submit");
     console.log(values);
   };
+  const { data: session } = useSession();
+  const pathname = usePathname();
+  const quantity = form.watch("quantity");
+  const price = useMemo(() => {
+    if (product?.price) {
+      if(product.price > 0){
+
+        return product.price * quantity;
+      }
+      return 0
+    }
+    return 0;
+  }, [quantity, product]);
 
   return (
     <>
@@ -154,14 +169,22 @@ const Single_productPage = () => {
                 <Separator className=" h-0.5"></Separator>
                 <div className="flex items-center justify-between">
                   <h1 className="font-semibold  m-3 text-xl">
-                    ${product.price}
+                    ${price}
                   </h1>
-                  <Button
-                    className="rounded-xl font-semibold my-1 hover:bg-yellow-600 active:bg-yellow-500  "
-                    type="submit"
-                  >
-                    Buy Now
-                  </Button>
+                  {session ? (
+                    <Button
+                      className="rounded-xl font-semibold my-1 hover:bg-yellow-600 active:bg-yellow-500  "
+                      type="submit"
+                    >
+                      Buy Now
+                    </Button>
+                  ) : (
+                    <Link href={`/api/auth/signin?callbackUrl=${pathname}`}>
+                      <Button className="rounded-xl font-semibold my-1 hover:bg-yellow-600 active:bg-yellow-500  ">
+                        Buy Now
+                      </Button>
+                    </Link>
+                  )}
                 </div>
               </form>
             </Form>

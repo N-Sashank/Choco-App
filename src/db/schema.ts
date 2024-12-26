@@ -47,6 +47,7 @@ export const warehousesTable = pgTable('warehouses',{
 
 export const OrdersTable=pgTable('orders',{
     id:serial('id').primaryKey()
+    
 
 })
 export const delivery_personsTable=pgTable('delivery_persons',{

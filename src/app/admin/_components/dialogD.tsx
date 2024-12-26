@@ -16,14 +16,14 @@ function Delivery_personDialog() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className="rounded-xl text-black" variant="outline">
+        <Button className=" bg-white rounded-xl text-black" variant="outline">
           Add delivery_person
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="bg-stone-800  text-white  sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle></DialogTitle>
-          <DialogDescription>Add delivery_person details</DialogDescription>
+          <DialogDescription className="text-yellow-700" >Add delivery_person details</DialogDescription>
         </DialogHeader>
 
         <DeliveryPersonForm />

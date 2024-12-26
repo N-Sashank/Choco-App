@@ -7,15 +7,15 @@ export default {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+//   C:\Users\Sashank\Desktop\Sashank\project_1\choco-app\public\assets\background.jpg
   theme: {
   	extend: {
-  		theme: {
-  			extend: {
-  				height: {
-  					'640': '640px'
-  				}
-  			}
-  		},
+		backgroundImage:{
+			cardimg: "url('/background.jpg')"
+		},
+		height: {
+			'640': '640px'
+		},
   		colors: {
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',

@@ -19,14 +19,14 @@ function ProductsDialog() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className="rounded-xl text-black" variant="outline">
+        <Button className="rounded-xl text-black bg-white" variant="outline">
           Add Product
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="bg-stone-800  text-white  rounded sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle></DialogTitle>
-          <DialogDescription>Add Product details</DialogDescription>
+          <DialogDescription className="text-yellow-700">Add Product details</DialogDescription>
         </DialogHeader>
 
         <ProductForm  />

@@ -16,14 +16,14 @@ function InventoryDialog() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className="rounded-xl text-black" variant="outline">
+        <Button className="rounded-xl bg-white text-black" variant="outline">
           Add Inventory
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="bg-stone-800  text-white  sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle></DialogTitle>
-          <DialogDescription>Add Inventory details</DialogDescription>
+          <DialogDescription className="text-yellow-700" >Add Inventory details</DialogDescription>
         </DialogHeader>
 
         <InventoryForm />

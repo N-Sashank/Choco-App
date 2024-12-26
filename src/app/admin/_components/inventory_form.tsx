@@ -102,9 +102,7 @@ const InventoryForm = () => {
           )}
         />
 
-        <DialogTrigger>
-          <Button type="submit">Submit</Button>
-        </DialogTrigger>
+          <Button className="rounded" type="submit">Submit</Button>
       </form>
     </Form>
   );

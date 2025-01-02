@@ -13,9 +13,6 @@ import {
 import ProductForm from "./productForm";
 
 function ProductsDialog() {
-
-
-  
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -26,10 +23,12 @@ function ProductsDialog() {
       <DialogContent className="bg-stone-800  text-white  rounded sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle></DialogTitle>
-          <DialogDescription className="text-yellow-700">Add Product details</DialogDescription>
+          <DialogDescription className="text-yellow-700">
+            Add Product details
+          </DialogDescription>
         </DialogHeader>
 
-        <ProductForm  />
+        <ProductForm />
         <DialogFooter></DialogFooter>
       </DialogContent>
     </Dialog>

@@ -47,7 +47,6 @@ const InventoryForm = () => {
         });
     } catch (error) {
       toast({
-        
         variant: "destructive",
         title: "Something went wrong try again",
       });
@@ -57,7 +56,10 @@ const InventoryForm = () => {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(handleSubmit)} className=" text-black space-y-8">
+      <form
+        onSubmit={form.handleSubmit(handleSubmit)}
+        className=" text-black space-y-8"
+      >
         <FormField
           control={form.control}
           name="sku"
@@ -102,7 +104,9 @@ const InventoryForm = () => {
           )}
         />
 
-          <Button className="rounded" type="submit">Submit</Button>
+        <Button className="rounded" type="submit">
+          Submit
+        </Button>
       </form>
     </Form>
   );

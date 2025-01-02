@@ -59,7 +59,10 @@ const DeliveryPersonForm = () => {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(handleSubmit)} className="  text-black space-y-8">
+      <form
+        onSubmit={form.handleSubmit(handleSubmit)}
+        className="  text-black space-y-8"
+      >
         <FormField
           control={form.control}
           name="name"
@@ -104,7 +107,9 @@ const DeliveryPersonForm = () => {
           )}
         />
 
-          <Button  className="rounded " type="submit">Submit</Button>
+        <Button className="rounded " type="submit">
+          Submit
+        </Button>
       </form>
     </Form>
   );

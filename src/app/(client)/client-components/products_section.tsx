@@ -54,11 +54,9 @@ const Products_section = () => {
                   />
                 </div>
                 <div className="relative ">
-                  <h3 className="mt-3 font-bold  ">
-                    {product.name}
-                  </h3>
+                  <h3 className="mt-3 font-bold  ">{product.name}</h3>
                   <p className="font-sm font-semibold  text-yellow-500 ml-1">
-                  ₹{product.price}
+                    ₹{product.price}
                   </p>
                   <Link href={`/products/${product.id}`}>
                     <Button className="transition rounded-xl w-full my-1 hover:bg-yellow-700 active:bg-yellow-600 font-semibold">

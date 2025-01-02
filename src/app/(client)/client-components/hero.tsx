@@ -26,7 +26,7 @@ const Hero = () => {
         className="  text-transparent"
         src={background}
         style={{ objectFit: "cover" }}
-        alt="Picture of the author"
+        alt=" "
       />
     </div>
   );

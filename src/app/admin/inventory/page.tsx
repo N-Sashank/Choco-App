@@ -16,7 +16,6 @@ export default function InventoryPage() {
       createdat: "2024-11-21T08:20:18.205Z",
     },
   ]);
- 
 
   async function getData() {
     const data = await axios.get("http://localhost:3000/api/warehouses");
@@ -35,21 +34,24 @@ export default function InventoryPage() {
             <div
               key={item.id}
               className=" my-4 w-full  flex flex-col p-6  border border-gray-200 rounded-xl shadow bg-amber-50 hover:bg-amber-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
-             >
+            >
               <div className=" flex items-center justify-center py-1 ">
                 <h5 className=" flex gap-2 items-center  justify-normal mb-2 text-2xl font-bold tracking-tight text-stone-950 dark:text-white">
-                  {item.name}<p className="font-extralight text-sm text-muted-foreground">(id:{item.id})</p>
+                  {item.name}
+                  <p className="font-extralight text-sm text-muted-foreground">
+                    (id:{item.id})
+                  </p>
                 </h5>
               </div>
-              <TableComponent title={item.name}/>
+              <TableComponent title={item.name} />
             </div>
           );
         })}
         <div className="m-5 text-center ">
           <h1 className="mx-auto text-xl">Available Products</h1>
-          <ProductsTableComponent/>
+          <ProductsTableComponent />
         </div>
-          <div className="flex justify-end items-center  ">
+        <div className="flex justify-end items-center  ">
           <InventoryDialog />
         </div>
       </div>

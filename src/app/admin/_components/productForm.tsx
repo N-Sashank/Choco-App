@@ -61,8 +61,11 @@ const productForm = () => {
   };
 
   return (
-    <Form {...form} >
-      <form onSubmit={form.handleSubmit(handleSubmit)} className=" text-black space-y-8">
+    <Form {...form}>
+      <form
+        onSubmit={form.handleSubmit(handleSubmit)}
+        className=" text-black space-y-8"
+      >
         <FormField
           control={form.control}
           name="name"
@@ -117,14 +120,16 @@ const productForm = () => {
           render={({ field }) => (
             <FormItem>
               <FormLabel className="text-white">Product Image</FormLabel>
-              <FormControl >
-                <Input  required autoComplete="off" type="file" {...fileref} />
+              <FormControl>
+                <Input required autoComplete="off" type="file" {...fileref} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-          <Button className="rounded" type="submit">Submit</Button>
+        <Button className="rounded" type="submit">
+          Submit
+        </Button>
       </form>
     </Form>
   );

@@ -6,7 +6,7 @@ const TableComponent = (title: any) => {
     {
       id: " ",
       sku: " ",
-      product_id:" ",
+      product_id: " ",
       product: " ",
       warehouse: "warehouse ",
     },
@@ -37,7 +37,6 @@ const TableComponent = (title: any) => {
           <tbody>
             {inventory.map((item) => {
               if (item.warehouse == title.title) {
-
                 return (
                   <tr
                     key={item.sku}
@@ -47,7 +46,10 @@ const TableComponent = (title: any) => {
                       scope="row"
                       className=" flex gap-2 items-center  justify-normal px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                     >
-                      {item.product}<p className="font-extralight text-sm text-gray-400 text-muted-foreground">(id:{item.product_id})</p>
+                      {item.product}
+                      <p className="font-extralight text-sm text-gray-400 text-muted-foreground">
+                        (id:{item.product_id})
+                      </p>
                     </th>
                     <td className="px-6 py-4">{item.sku}</td>
                   </tr>

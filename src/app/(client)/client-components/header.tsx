@@ -2,7 +2,9 @@
 import { Button } from "@/components/ui/button";
 import axios from "axios";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import React, { useEffect, useState } from "react";
+import { useSession } from "next-auth/react";
 
 const Header = () => {
   const [isAdmin, setisAdmin] = useState("");
@@ -16,7 +18,9 @@ const Header = () => {
   useEffect(() => {
     adminHandler();
   }, []);
-
+  const { data: session } = useSession();
+  console.log(session);
+  const pathname = usePathname();
   return (
     <>
       <div className="">
@@ -25,9 +29,9 @@ const Header = () => {
             Free cupcake for every order
           </p>
         </div>
-        <div className="">
+        <div className="flex items-center justify-between gap-3">
           {isAdmin === "admin" ? (
-            <Button className="rounded-full hover:bg-yellow-600 active:bg-yellow-800  absolute mx-auto text-center m-2">
+            <Button className="rounded-full hover:bg-yellow-600 active:bg-yellow-800 hover:outline outline-yellow-800 transition hover:scale-105 mx-auto text-center m-2">
               <Link href={"http://localhost:3000/admin"} className="text-black">
                 Admin Dashboard
               </Link>
@@ -36,7 +40,7 @@ const Header = () => {
             <div></div>
           )}
 
-          <ul className="flex justify-center gap-6 p-4 bg-white">
+          <ul className="flex justify-center gap-6 p-4 mr-20 bg-white">
             <li className="text-yellow-700 hover:text-yellow-900 hover:underline  transition ">
               <Link href={"http://localhost:3000/"}>Home</Link>
             </li>
@@ -50,6 +54,23 @@ const Header = () => {
               <Link href={"#products-section"}>Orders </Link>
             </li>
           </ul>
+          {session ? (
+            <div className=" transition hover:scale-105">
+              <Link href={`/api/auth/signout?callbackUrl=${pathname}`}>
+                <Button className=" rounded-full border-2 transition hover:outline hover:bg-yellow-600 mr-4 w-50 ">
+                  SignOut
+                </Button>
+              </Link>
+            </div>
+          ) : (
+            <div className=" transition hover:scale-105">
+              <Link href={`/api/auth/signin?callbackUrl=${pathname}`}>
+                <Button className=" rounded-full border-2 transition hover:outline  hover:bg-yellow-600 mr-4 w-50 ">
+                  SignIn
+                </Button>
+              </Link>
+            </div>
+          )}
         </div>
       </div>
     </>

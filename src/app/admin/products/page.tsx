@@ -1,12 +1,9 @@
 "use client";
 
-
 import TableComponent from "./component";
 import ProductsDialog from "../_components/dialogP";
 
 export default function productsPage() {
- 
-
   return (
     <>
       <div className=" bg-slate-800-50 overflow-x-hidden overflow-y-scroll no-scrollbar   max-h-[640px] w-full text-gray-300 p-6">

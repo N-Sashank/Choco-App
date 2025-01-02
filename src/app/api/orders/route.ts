@@ -13,11 +13,11 @@ import { getServerSession } from "next-auth";
 import { eq, isNull, and, desc, inArray } from "drizzle-orm";
 
 export async function POST(request: Request) {
-  const session = await getServerSession(authOptions)
-  console.log('session', session);
+  const session = await getServerSession(authOptions);
+  console.log("session", session);
 
   if (!session) {
-      return Response.json({ message: 'Not allowed' }, { status: 401 });
+    return Response.json({ message: "Not allowed" }, { status: 401 });
   }
 
   const data = await request.json();

@@ -1,13 +1,21 @@
-"use client"
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/hooks/use-toast";
 const Newsletter = () => {
+  const [email, setemail] = useState("");
   const handleclick = () => {
-    toast({
-      title: "",
-      description: "Thank you for shopping with us",
-    });
+    console.log(email);
+    if (email) {
+      toast({
+        title: email,
+        description: "Thank you for subscribing to Newsletter",
+      });
+    } else {
+      toast({
+        description: "Please enter email address",
+      });
+    }
   };
   return (
     <>
@@ -26,8 +34,8 @@ const Newsletter = () => {
               inbox with our choclate and cake newsletter.
             </h3>
           </section>
-          
           <input
+            onChange={(e) => setemail(e.target.value)}
             required
             type="email"
             placeholder="Enter email"

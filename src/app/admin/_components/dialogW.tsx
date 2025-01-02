@@ -23,7 +23,9 @@ function WarehousesDialog() {
       <DialogContent className="bg-stone-800  text-white  sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle></DialogTitle>
-          <DialogDescription className="text-yellow-700" >Add Warehouse details</DialogDescription>
+          <DialogDescription className="text-yellow-700">
+            Add Warehouse details
+          </DialogDescription>
         </DialogHeader>
 
         <WarehouseForm />

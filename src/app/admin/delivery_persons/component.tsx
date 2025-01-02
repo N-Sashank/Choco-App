@@ -7,7 +7,7 @@ const TableComponent = (title: any) => {
       id: " ",
       name: " ",
       phone: " ",
-      warehouse: "warehouse"
+      warehouse: "warehouse",
     },
   ]);
 
@@ -36,7 +36,6 @@ const TableComponent = (title: any) => {
           <tbody>
             {delivery_personsList.map((item) => {
               if (item.warehouse == title.title) {
-
                 return (
                   <tr
                     key={item.phone}

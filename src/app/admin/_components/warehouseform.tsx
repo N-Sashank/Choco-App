@@ -55,13 +55,13 @@ const WarehouseForm = () => {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-8">
+      <form onSubmit={form.handleSubmit(handleSubmit)} className=" text-black space-y-8">
         <FormField
           control={form.control}
           name="name"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Name</FormLabel>
+              <FormLabel className="text-white ">Name</FormLabel>
               <FormControl>
                 <Input required autoComplete="off" placeholder="" {...field} />
               </FormControl>
@@ -74,7 +74,7 @@ const WarehouseForm = () => {
           name="pincode"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Pincode</FormLabel>
+              <FormLabel className="text-white ">Pincode</FormLabel>
               <FormControl>
                 <Input
                   required

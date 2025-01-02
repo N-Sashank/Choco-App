@@ -22,6 +22,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
+import { toast } from "@/hooks/use-toast";
 
 const Single_productPage = () => {
   const params = useParams();
@@ -54,20 +55,40 @@ const Single_productPage = () => {
     },
   });
   type Formvalues = z.infer<typeof orderSchema>;
-  const onSubmit = (values: Formvalues) => {
-    console.log("submit");
-    console.log(values);
+  const onSubmit = async (values: Formvalues) => {
+    try {
+      const result = await axios
+        .post("http://localhost:3000/api/orders", {
+          productId: values.productId,
+          quantity: values.quantity,
+          pincode: values.pincode,
+          address: values.address,
+        })
+        .then(function (response) {
+          toast({
+            title: response.data.message,
+            description: "Thank you for shopping with us",
+          });
+          console.log(response);
+        });
+      console.log(result);
+    } catch (error: any) {
+      toast({
+        variant: "destructive",
+        title: error.response.data.message,
+      });
+      console.log(error.response.data.message);
+    }
   };
   const { data: session } = useSession();
   const pathname = usePathname();
   const quantity = form.watch("quantity");
   const price = useMemo(() => {
     if (product?.price) {
-      if(product.price > 0){
-
+      if (product.price > 0) {
         return product.price * quantity;
       }
-      return 0
+      return 0;
     }
     return 0;
   }, [quantity, product]);
@@ -76,7 +97,7 @@ const Single_productPage = () => {
     <>
       <Header />
 
-      <div className="flex mx-auto  rounded-xl gap-8 justify-center items-center w-5/6 h-auto p-10 bg-stone-100">
+      <div className="flex mx-auto mt-4 rounded-xl gap-8 justify-center items-center w-5/6 h-auto p-10 bg-stone-100">
         <div>
           <Image
             className="rounded-xl text-transparent drop-shadow-2xl"
@@ -168,9 +189,7 @@ const Single_productPage = () => {
                 </div>
                 <Separator className=" h-0.5"></Separator>
                 <div className="flex items-center justify-between">
-                  <h1 className="font-semibold  m-3 text-xl">
-                    ${price}
-                  </h1>
+                  <h1 className="font-semibold  m-3 text-xl">₹{price}</h1>
                   {session ? (
                     <Button
                       className="rounded-xl font-semibold my-1 hover:bg-yellow-600 active:bg-yellow-500  "

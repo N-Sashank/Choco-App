@@ -15,7 +15,6 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import axios from "axios";
 import { useToast } from "@/hooks/use-toast";
-import { DialogTrigger } from "@radix-ui/react-dialog";
 
 export type FormValues = z.input<typeof inventorySchema>;
 
@@ -48,6 +47,7 @@ const InventoryForm = () => {
         });
     } catch (error) {
       toast({
+        
         variant: "destructive",
         title: "Something went wrong try again",
       });
@@ -57,13 +57,13 @@ const InventoryForm = () => {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-8">
+      <form onSubmit={form.handleSubmit(handleSubmit)} className=" text-black space-y-8">
         <FormField
           control={form.control}
           name="sku"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>sku</FormLabel>
+              <FormLabel className="text-white ">sku</FormLabel>
               <FormControl>
                 <Input required autoComplete="off" {...field} />
               </FormControl>
@@ -76,7 +76,7 @@ const InventoryForm = () => {
           name="product_id"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="flex gap-1 items-center justify-start">
+              <FormLabel className="flex text-white gap-1 items-center justify-start">
                 Product_id
               </FormLabel>
               <FormControl>
@@ -91,7 +91,7 @@ const InventoryForm = () => {
           name="warehouse_id"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="flex gap-1 items-center justify-start">
+              <FormLabel className="flex text-white gap-1 items-center justify-start">
                 Warehouse_id
               </FormLabel>
               <FormControl>

@@ -59,13 +59,13 @@ const DeliveryPersonForm = () => {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-8">
+      <form onSubmit={form.handleSubmit(handleSubmit)} className="  text-black space-y-8">
         <FormField
           control={form.control}
           name="name"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Name</FormLabel>
+              <FormLabel className="text-white ">Name</FormLabel>
               <FormControl>
                 <Input required autoComplete="off" {...field} />
               </FormControl>
@@ -78,7 +78,7 @@ const DeliveryPersonForm = () => {
           name="phone"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="flex gap-1 items-center justify-start">
+              <FormLabel className="text-white flex gap-1 items-center justify-start">
                 Phone
               </FormLabel>
               <FormControl>
@@ -93,7 +93,7 @@ const DeliveryPersonForm = () => {
           name="warehouse_id"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="flex gap-1 items-center justify-start">
+              <FormLabel className="text-white flex gap-1 items-center justify-start">
                 Warehouse_id
               </FormLabel>
               <FormControl>

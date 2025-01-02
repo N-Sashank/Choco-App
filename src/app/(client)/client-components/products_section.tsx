@@ -36,12 +36,12 @@ const Products_section = () => {
         </h1>
         <Separator className=" w-5/6 mx-auto h-0.5 " />
 
-        <div className="grid grid-cols-4 gap-7 overflow-hidden   p-10">
+        <div className="grid grid-cols-4 gap-7 drop-shadow-lg overflow-hidden   p-10">
           {products.map((product) => {
             return (
               <div
                 key={product.id}
-                className="w-auto h-auto  outline-dashed outline-yellow-500  rounded p-4"
+                className="w-auto h-auto   transition outline-dashed hover:scale-105 hover:bg-yellow-100 outline-yellow-500  rounded p-4"
               >
                 <div className="">
                   <Image
@@ -54,14 +54,14 @@ const Products_section = () => {
                   />
                 </div>
                 <div className="relative ">
-                  <h3 className="mt-3 font-bold text-lg text-yellow-800">
+                  <h3 className="mt-3 font-bold  ">
                     {product.name}
                   </h3>
-                  <p className="font-sm font-semibold  text-muted-foreground ml-1">
-                    ${product.price}
+                  <p className="font-sm font-semibold  text-yellow-500 ml-1">
+                  ₹{product.price}
                   </p>
                   <Link href={`/products/${product.id}`}>
-                    <Button className="rounded-xl w-full my-1 hover:bg-yellow-700 active:bg-yellow-600 font-semibold">
+                    <Button className="transition rounded-xl w-full my-1 hover:bg-yellow-700 active:bg-yellow-600 font-semibold">
                       Buy Now
                     </Button>
                   </Link>

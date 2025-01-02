@@ -45,16 +45,29 @@ export const warehousesTable = pgTable('warehouses',{
 );
 
 
-export const OrdersTable=pgTable('orders',{
-    id:serial('id').primaryKey()
-    
+export const OrdersTable = pgTable('Orders', {
+    id: serial('id').primaryKey(),
+    userId: integer('user_id')
+        .references(() => usersTable.id, { onDelete: 'cascade' })
+        .notNull(),
+    status: varchar('status', { length: 10 }).notNull(),
+    type: varchar('type', { length: 6 }).default('quick'),
+    price: integer('price').notNull(),
+    address: text('address').notNull(),
+    productId: integer('product_id')
+        .references(() => productsTable.id, { onDelete: 'no action' })
+        .notNull(),
+    quantity: integer('quantity').notNull(),
+    updatedAt: timestamp('updated_at').default(sql`CURRENT_TIMESTAMP`),
+    createdAt: timestamp('created_at').default(sql`CURRENT_TIMESTAMP`),
+});
 
-})
+
 export const delivery_personsTable=pgTable('delivery_persons',{
     id:serial('id').primaryKey(),
     name:varchar('name',{length:100}).notNull(),
     phone:varchar('phone',{length:13}).notNull().unique(),
-    warehouse_id:integer("warehouse_id").notNull().references(()=>warehousesTable.id,{onDelete:'cascade'}),
+    warehouse_id:integer('warehouse_id').references(()=>warehousesTable.id,{onDelete:'cascade'}).notNull(),
     order_id:integer('order_id').references(()=>OrdersTable.id,{onDelete:'set null'}),
     updatedat:timestamp('upadated_at').notNull().default(sql`CURRENT_TIMESTAMP`),
     createdat:timestamp('created_at').notNull().default(sql`CURRENT_TIMESTAMP`)

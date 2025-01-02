@@ -1,5 +1,5 @@
-import { supabaseAuthAdminRole } from "drizzle-orm/supabase";
 import withAuth from "next-auth/middleware";
+
 
 export default withAuth({
   callbacks: {
@@ -9,7 +9,8 @@ export default withAuth({
           return true;
         } else {
           console.log("NOT ADMIN", token);
-          return false;
+
+         return false;
         }
       } else {
         return true;

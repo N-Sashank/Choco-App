@@ -62,13 +62,13 @@ const productForm = () => {
 
   return (
     <Form {...form} >
-      <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-8">
+      <form onSubmit={form.handleSubmit(handleSubmit)} className=" text-black space-y-8">
         <FormField
           control={form.control}
           name="name"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Name</FormLabel>
+              <FormLabel className="text-white">Name</FormLabel>
               <FormControl>
                 <Input autoComplete="off" placeholder="" {...field} />
               </FormControl>
@@ -81,7 +81,7 @@ const productForm = () => {
           name="description"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Description</FormLabel>
+              <FormLabel className="text-white">Description</FormLabel>
               <FormControl>
                 <Textarea autoComplete="off" placeholder="" {...field} />
               </FormControl>
@@ -94,7 +94,7 @@ const productForm = () => {
           name="price"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Price</FormLabel>
+              <FormLabel className="text-white">Price</FormLabel>
               <FormControl>
                 <Input
                   type="number"
@@ -116,7 +116,7 @@ const productForm = () => {
           name="image"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Product Image</FormLabel>
+              <FormLabel className="text-white">Product Image</FormLabel>
               <FormControl >
                 <Input  required autoComplete="off" type="file" {...fileref} />
               </FormControl>

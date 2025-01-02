@@ -1,8 +1,14 @@
+"use client"
 import React from "react";
-import Image from "next/image";
-import image1 from "./cardimg.jpg";
 import { Button } from "@/components/ui/button";
-const Newsletter= () => {
+import { toast } from "@/hooks/use-toast";
+const Newsletter = () => {
+  const handleclick = () => {
+    toast({
+      title: "",
+      description: "Thank you for shopping with us",
+    });
+  };
   return (
     <>
       <div className="flex justify-center items-center m-16">
@@ -20,12 +26,17 @@ const Newsletter= () => {
               inbox with our choclate and cake newsletter.
             </h3>
           </section>
+          
           <input
+            required
             type="email"
             placeholder="Enter email"
             className="bg-transparent outline-dashed  outline-red-50 text-white   p-2 w-80"
           />
-          <Button className="active:bg-yellow-700 bg-yellow-950 text-white border-2 border-red-100 p-2 rounded-2xl m-1 hover:font-semibold hover:bg-yellow-800">
+          <Button
+            onClick={handleclick}
+            className="active:bg-yellow-700 transition bg-yellow-950 text-white border-2 border-red-100 p-2 rounded-2xl m-1 hover:scale-105 hover:bg-yellow-800"
+          >
             Subscribe
           </Button>
         </div>

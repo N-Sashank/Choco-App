@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import TableComponent from "./component";
 import InventoryDialog from "../_components/dialogI";
+import ProductsTableComponent from "./productComponent";
 
 export default function InventoryPage() {
   const [warehouses, setwarehouses] = useState([
@@ -44,6 +45,10 @@ export default function InventoryPage() {
             </div>
           );
         })}
+        <div className="m-5 text-center ">
+          <h1 className="mx-auto text-xl">Available Products</h1>
+          <ProductsTableComponent/>
+        </div>
           <div className="flex justify-end items-center  ">
           <InventoryDialog />
         </div>

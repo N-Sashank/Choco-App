@@ -1,6 +1,7 @@
 import React from "react";
 import background from "./chocolate.jpg";
 import Image from "next/image";
+import Link from "next/link";
 
 const Hero = () => {
   return (
@@ -14,9 +15,11 @@ const Hero = () => {
           voluptas necessitatibus ea pariatur exercitationem placeat,
           repudiandae provident. Asperiores, recusandae quis?
         </h3>
-        <button className=" p-2 m-3 ml-1  hover:bg-yellow-800 active:bg-yellow-700 outline-dashed bg-transparent rounded-xl hover:scale-105 ">
-          Shop now
-        </button>
+        <Link href="#products-section ">
+          <button className=" transition p-2 m-3 ml-1  hover:bg-yellow-800 active:bg-yellow-700 outline-dashed bg-transparent rounded-xl hover:scale-105 ">
+            Shop now
+          </button>
+        </Link>
       </div>
 
       <Image

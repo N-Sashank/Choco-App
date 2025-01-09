@@ -124,6 +124,7 @@ export async function POST(request: Request) {
         orderstatus = true;
         return Order[0];
       } catch (error) {
+        console.log(error);
         ErrorString = "update error";
       }
     });

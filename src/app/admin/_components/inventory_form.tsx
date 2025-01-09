@@ -50,7 +50,7 @@ const InventoryForm = () => {
         variant: "destructive",
         title: "Something went wrong try again",
       });
-      console.error();
+      console.log(error);
     }
   };
 

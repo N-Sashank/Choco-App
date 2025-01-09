@@ -35,7 +35,7 @@ const Single_productPage = () => {
   }
   useEffect(() => {
     getData();
-  }, []);
+  }); //[]--------------
 
   const [product, setproduct] = useState({
     id: 1,

@@ -1,5 +1,5 @@
 import React from "react";
-
+import Image from "next/image";
 const Footer = () => {
   return (
     <div>
@@ -8,6 +8,7 @@ const Footer = () => {
           <div className="md:flex md:justify-between">
             <div className="mb-6 md:mb-0">
               <a href="#" className="flex items-center">
+                {/* <Image alt="logo" width={16} hei src={"./logo.png"}></Image> */}
                 <img src="./logo.png" className="h-12 me-3" alt="Logo" />
                 <span className="self-center text-2xl font-semibold whitespace-nowrap text-white">
                   Choco App

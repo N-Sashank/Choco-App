@@ -1,13 +1,12 @@
 import { db } from "@/db";
 import { delivery_personsTable, warehousesTable } from "@/db/schema";
 import { deliverypersonSchema } from "@/validator/deliverypersonSchema";
-import { error } from "console";
 import { desc, eq } from "drizzle-orm";
 
 export async function POST(request: Request) {
   //auth
   const data = await request.json();
-  console.log(data);
+  // console.log(data);
 
   let validatedata;
   try {

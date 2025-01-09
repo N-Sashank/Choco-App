@@ -49,6 +49,7 @@ export async function GET() {
 
     return Response.json(inventoryList, { status: 201 });
   } catch (error) {
+    console.log(error);
     return Response.json(
       { message: "cannot fetch inventory  list" },
       { status: 500 }

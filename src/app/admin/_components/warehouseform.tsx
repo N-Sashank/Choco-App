@@ -15,7 +15,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import axios from "axios";
 import { useToast } from "@/hooks/use-toast";
-import { DialogTrigger } from "@radix-ui/react-dialog";
+// import { DialogTrigger } from "@radix-ui/react-dialog";
 
 export type FormValues = z.input<typeof warehouseSchema>;
 
@@ -49,7 +49,7 @@ const WarehouseForm = () => {
         variant: "destructive",
         title: "Something went wrong try again",
       });
-      console.error();
+      console.log(error);
     }
   };
 

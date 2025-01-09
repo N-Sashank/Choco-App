@@ -1,7 +1,20 @@
+"use client";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 
-const TableComponent = (title: any) => {
+const TableComponent = () => {
+  // interface ProductsInterface{
+  //   id:string,
+  //   name:string,
+  //   updatedat: string,
+  //     createdat: string,
+  //     image: string,
+  //     description?: string,
+  //     price: string,
+  // }
+
+  // const productsList:Pro=[]
+
   const [products, setproducts] = useState([
     {
       id: " ",

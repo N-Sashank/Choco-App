@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 
-const TableComponent = (title: any) => {
+const TableComponent = () => {
   const [orders, setorders] = useState([
     {
       id: 0,

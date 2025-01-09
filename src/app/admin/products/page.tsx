@@ -1,5 +1,3 @@
-"use client";
-
 import TableComponent from "./component";
 import ProductsDialog from "../_components/dialogP";
 

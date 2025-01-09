@@ -80,8 +80,3 @@ export default {
   },
   plugins: [require("tailwindcss-animate")],
 } satisfies Config;
-
-// stone-500
-// stone-400
-// red-300
-// amber-100

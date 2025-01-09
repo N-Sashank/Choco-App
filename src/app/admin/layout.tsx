@@ -4,7 +4,6 @@ import {
   Blocks,
   CircleCheck,
   HomeIcon,
-  Key,
   Layers,
   ShoppingCart,
   Users,
@@ -13,9 +12,7 @@ import {
 import Link from "next/link";
 
 function adminLayout({ children }: { children: React.ReactNode }) {
-  const [tab, settab] = useState("Dashboard");
-
-  const [items, setitems] = useState([
+  const items = [
     {
       icon: HomeIcon,
       label: "Dashboard",
@@ -53,7 +50,7 @@ function adminLayout({ children }: { children: React.ReactNode }) {
       url: "/admin/inventory",
       active: false,
     },
-  ]);
+  ];
 
   const changeStatus = (data: string) => {
     items.map((item) => {
@@ -82,7 +79,7 @@ function adminLayout({ children }: { children: React.ReactNode }) {
                 <Link
                   key={item.label}
                   onClick={() => {
-                    changeStatus(item.label), settab(item.label);
+                    changeStatus(item.label);
                   }}
                   href={item.url}
                   className={

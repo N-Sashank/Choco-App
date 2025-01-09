@@ -2,7 +2,7 @@ import React from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { clientProductSchema } from "@/validator/clientProductSchema";
-import { number, z } from "zod";
+import { z } from "zod";
 import {
   Form,
   FormControl,
@@ -17,7 +17,6 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import axios from "axios";
 import { useToast } from "@/hooks/use-toast";
-import { DialogTrigger } from "@radix-ui/react-dialog";
 
 export type FormValues = z.input<typeof clientProductSchema>;
 
@@ -56,7 +55,7 @@ const productForm = () => {
         variant: "destructive",
         title: "Something went wrong try again",
       });
-      console.error();
+      console.log(error);
     }
   };
 
@@ -117,7 +116,7 @@ const productForm = () => {
         <FormField
           control={form.control}
           name="image"
-          render={({ field }) => (
+          render={() => (
             <FormItem>
               <FormLabel className="text-white">Product Image</FormLabel>
               <FormControl>

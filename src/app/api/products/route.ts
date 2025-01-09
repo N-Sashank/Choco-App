@@ -48,7 +48,7 @@ export async function POST(request: Request) {
 
     return Response.json({ message: "Product added" }, { status: 201 });
   } catch (error) {
-    fs.unlink(filename, function (err: any) {
+    fs.unlink(filename, function (err: unknown) {
       if (err) throw err;
       console.log("File deleted!");
     });
@@ -68,6 +68,7 @@ export async function GET() {
       .orderBy(desc(productsTable.id));
     return Response.json(productList, { status: 201 });
   } catch (error) {
+    console.log(error);
     return Response.json(
       { message: "cannot fetch product list" },
       { status: 500 }

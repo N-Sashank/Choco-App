@@ -31,7 +31,7 @@ const Header = () => {
         </div>
         <div className="flex items-center justify-between gap-3">
           {isAdmin === "admin" ? (
-            <Button className="rounded-full hover:bg-yellow-600 active:bg-yellow-800 hover:outline outline-yellow-800 transition hover:scale-105 mx-auto text-center m-2">
+            <Button className="rounded-full hover:bg-yellow-600 active:bg-yellow-700 hover:outline outline-yellow-800 transition hover:scale-105 mx-auto text-center m-2">
               <Link href={"http://localhost:3000/admin"} className="text-black">
                 Admin Dashboard
               </Link>

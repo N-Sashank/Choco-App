@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 
-const TableComponent = (title: any) => {
+const TableComponent = ({ title }: { title: string }) => {
   const [inventory, setinventory] = useState([
     {
       id: " ",
@@ -36,7 +36,7 @@ const TableComponent = (title: any) => {
           </thead>
           <tbody>
             {inventory.map((item) => {
-              if (item.warehouse == title.title) {
+              if (item.warehouse == title) {
                 return (
                   <tr
                     key={item.sku}

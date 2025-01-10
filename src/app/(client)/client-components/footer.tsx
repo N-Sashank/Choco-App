@@ -13,6 +13,7 @@ const Footer = () => {
                   width={50}
                   height={12}
                   alt="Picture of the author"
+                  loading="lazy"
                 />
                 {/* <img src="./logo.png" className="h-12 me-3" alt="Logo" /> */}
                 <span className="self-center text-2xl font-semibold whitespace-nowrap text-white">

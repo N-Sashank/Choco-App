@@ -19,13 +19,13 @@ const Header = () => {
     "http://localhost:3000/api/user_role_check",
     getData
   );
-  isAdmin = data?.data.token.role;
+  isAdmin = data?.data?.token?.role;
 
   const { data: session } = useSession();
   const pathname = usePathname();
   return (
     <>
-      <div className="">
+      <div className="w-full">
         <div className=" w-full h-7 bg-yellow-950 flex justify-center items-center">
           <p className="text-sm font-extralight text-white ">
             Free cupcake for every order
@@ -33,13 +33,16 @@ const Header = () => {
         </div>
         <div className="flex items-center justify-between gap-3">
           {isAdmin === "admin" ? (
-            <Button className="rounded-full hover:bg-yellow-600 active:bg-yellow-700 hover:outline outline-yellow-800 transition hover:scale-100 mx-auto text-center m-2">
-              <Link href={"http://localhost:3000/admin"} className="text-black">
+            <Button className="rounded-full  hover:bg-yellow-600 active:bg-yellow-700 hover:outline outline-yellow-800 transition hover:scale-100 mx-auto text-center  m-2">
+              <Link
+                href={"http://localhost:3000/admin"}
+                className="size-auto text-black "
+              >
                 Admin Dashboard
               </Link>
             </Button>
           ) : (
-            <div></div>
+            <div className="w-36"></div>
           )}
 
           <ul className="flex justify-center gap-6 p-4 mr-20 bg-white">

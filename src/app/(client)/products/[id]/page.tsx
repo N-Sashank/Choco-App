@@ -106,6 +106,7 @@ const Single_productPage = () => {
             alt=""
             height={400}
             width={400}
+            loading="lazy"
           />
         </div>
         <div>

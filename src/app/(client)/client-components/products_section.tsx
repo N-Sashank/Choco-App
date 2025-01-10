@@ -82,6 +82,7 @@ const Products_section = () => {
                       height={150}
                       width={150}
                       style={{ objectFit: "cover" }}
+                      loading="lazy"
                     />
                   </div>
                   <div className="relative ">

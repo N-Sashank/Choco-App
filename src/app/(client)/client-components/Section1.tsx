@@ -9,9 +9,10 @@ const Section1 = () => {
         <Image
           className=" text-transparent rounded-xl"
           src={image1}
-          alt=" "
+          alt=""
           width={400}
           height={400}
+          loading="lazy"
         />
       </div>
       <div className="w-96 ">

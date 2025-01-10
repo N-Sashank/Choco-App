@@ -23,10 +23,11 @@ const Hero = () => {
       </div>
 
       <Image
-        className="  text-transparent"
+        className=""
         src={background}
         style={{ objectFit: "cover" }}
-        alt=" "
+        alt="Hero image"
+        priority
       />
     </div>
   );

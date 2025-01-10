@@ -27,7 +27,7 @@ const Hero = () => {
         src={background}
         style={{ objectFit: "cover" }}
         alt="Hero image"
-        priority
+        loading="eager"
       />
     </div>
   );

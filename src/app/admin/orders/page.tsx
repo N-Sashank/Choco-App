@@ -1,5 +1,3 @@
-"use client";
-
 import TableComponent from "./component";
 
 export default function productsPage() {

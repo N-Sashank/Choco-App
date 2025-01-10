@@ -1,5 +1,3 @@
-"use client";
-
 import TableComponent from "./component";
 import WarehousesDialog from "../_components/dialogW";
 

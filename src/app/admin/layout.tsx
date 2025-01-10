@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import {
   Blocks,
   CircleCheck,
@@ -12,7 +12,7 @@ import {
 import Link from "next/link";
 
 function adminLayout({ children }: { children: React.ReactNode }) {
-  const items = [
+  const [items, setitems] = useState([
     {
       icon: HomeIcon,
       label: "Dashboard",
@@ -50,15 +50,19 @@ function adminLayout({ children }: { children: React.ReactNode }) {
       url: "/admin/inventory",
       active: false,
     },
-  ];
+  ]);
 
   const changeStatus = (data: string) => {
-    items.map((item) => {
-      item.active = false;
-      if (item.label === data) {
-        item.active = true;
+    const items1 = [...items];
+    items1.map((i) => {
+      if (i.label === data) {
+        i.active = true;
+      } else {
+        i.active = false;
       }
     });
+    console.log(items1);
+    setitems(items1);
   };
 
   return (

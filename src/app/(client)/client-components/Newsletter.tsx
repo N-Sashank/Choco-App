@@ -5,7 +5,6 @@ import { toast } from "@/hooks/use-toast";
 const Newsletter = () => {
   const [email, setemail] = useState("");
   const handleclick = () => {
-    console.log(email);
     if (email) {
       toast({
         title: email,

@@ -67,7 +67,7 @@ const Products_section = () => {
           </h1>
           <Separator className=" md:w-5/6 mx-auto h-0.5 " />
 
-          <div className="grid md:grid-cols-4 grid-cols-1 md:gap-7 gap-3 drop-shadow-lg overflow-hidden   p-10">
+          <div className="grid lg:grid-cols-3 md:grid-cols-2 md:gap-5  grid-cols-1 lg:gap-5 xl:grid-cols-4 xl:gap-7 gap-3 drop-shadow-lg overflow-hidden   p-10">
             {products.map((product) => {
               return (
                 <div

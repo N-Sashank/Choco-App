@@ -18,9 +18,9 @@ const Newsletter = () => {
   };
   return (
     <>
-      <div className=" hidden md:flex justify-center w-auto my-16">
-        <div className="flex flex-col w-1/2 h-80 items-center justify-center gap-3 rounded-xl bg-cardimg bg-cover bg-no-repeat bg-bottom  ">
-          <h1 className=" font-extrabold  text-slate-100 text-3xl text-center">
+      <div className=" flex justify-center w-auto my-16 rounded ">
+        <div className="p-4 flex flex-col lg:w-1/2 w-full m-1 lg:h-80 items-center justify-center gap-3  bg-cardimg  bg-contian bg-no-repeat bg-bottom  ">
+          <h1 className=" lg:font-extrabold font-semibold text-slate-100 m-2 text-3xl text-center">
             Stay Updated with Newsletter
           </h1>
           <section className="w-auto overflow-hidden   text-gray-200 ">

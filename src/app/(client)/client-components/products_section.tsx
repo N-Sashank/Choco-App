@@ -32,7 +32,7 @@ const Products_section = () => {
       {isLoading ? (
         <div className="flex justify-center items-center ">
           <div className="mx-auto bg-white  shadow-lg w-96 rounded-2xl">
-            <div className="h-48 p-3 overflow-hidden bg-gray-200 animate-pulse"></div>
+            <div className="h-auto  md:h-48 p-3 overflow-hidden bg-gray-200 animate-pulse"></div>
             <div className="p-3 h-">
               <div className="grid grid-cols-3 gap-4 mt-2">
                 <div className="h-8 bg-gray-200 rounded animate-pulse"></div>
@@ -45,7 +45,7 @@ const Products_section = () => {
               </div>
             </div>
           </div>
-          <div className="mx-auto bg-white  shadow-lg w-96 rounded-2xl">
+          <div className="hidden md:block mx-auto bg-white  shadow-lg w-96 rounded-2xl">
             <div className="h-48 p-3 overflow-hidden bg-gray-200 animate-pulse"></div>
             <div className="p-3 h-">
               <div className="grid grid-cols-3 gap-4 mt-2">
@@ -61,13 +61,13 @@ const Products_section = () => {
           </div>
         </div>
       ) : (
-        <div className="  outline-double outline-yellow-600 w-4/6 mx-auto p-5">
-          <h1 className=" text-xl  text-center mt-5 font-bold text-yellow-900">
+        <div className="  outline-double outline-yellow-600 w-auto md:w-4/6 mx-auto p-5">
+          <h1 className=" text-xl  text-center mt-5 md:font-bold text-yellow-900">
             Products
           </h1>
-          <Separator className=" w-5/6 mx-auto h-0.5 " />
+          <Separator className=" md:w-5/6 mx-auto h-0.5 " />
 
-          <div className="grid grid-cols-4 gap-7 drop-shadow-lg overflow-hidden   p-10">
+          <div className="grid md:grid-cols-4 grid-cols-1 md:gap-7 gap-3 drop-shadow-lg overflow-hidden   p-10">
             {products.map((product) => {
               return (
                 <div
@@ -85,13 +85,13 @@ const Products_section = () => {
                       loading="lazy"
                     />
                   </div>
-                  <div className="relative ">
+                  <div className="flex  flex-col  justify-around  h-36">
                     <h3 className="mt-3 font-bold  ">{product.name}</h3>
-                    <p className="font-sm font-semibold  text-yellow-500 ml-1">
+                    <p className="font-sm font-semibold    text-yellow-500  ">
                       ₹{product.price}
                     </p>
-                    <Link href={`/products/${product.id}`}>
-                      <Button className="transition rounded-xl w-full my-1 hover:bg-yellow-700 active:bg-yellow-600 font-semibold">
+                    <Link className=" w-full" href={`/products/${product.id}`}>
+                      <Button className="transition rounded-xl   w-full my-1 hover:bg-yellow-700 active:bg-yellow-600 font-semibold">
                         Buy Now
                       </Button>
                     </Link>

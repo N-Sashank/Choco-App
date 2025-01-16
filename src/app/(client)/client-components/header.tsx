@@ -25,13 +25,13 @@ const Header = () => {
   const pathname = usePathname();
   return (
     <>
-      <div className="w-full">
-        <div className=" w-full h-7 bg-yellow-950 flex justify-center items-center">
+      <div className=" w-full">
+        <div className=" w-full h-7 bg-yellow-800 md:bg-yellow-950 flex justify-center items-center">
           <p className="text-sm font-extralight text-white ">
             Free cupcake for every order
           </p>
         </div>
-        <div className="flex items-center justify-between gap-3">
+        <div className=" hidden md:flex items-center justify-between gap-3">
           {isAdmin === "admin" ? (
             <Button className="rounded-full  hover:bg-yellow-600 active:bg-yellow-700 hover:outline outline-yellow-800 transition hover:scale-100 mx-auto text-center  m-2">
               <Link

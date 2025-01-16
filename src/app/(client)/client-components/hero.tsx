@@ -6,17 +6,29 @@ import Link from "next/link";
 const Hero = () => {
   return (
     <div className="">
-      <div className="absolute text-white m-52  ">
-        <h1 className="text-5xl font-bold">Make more moments</h1>
-        <h1 className="mt-2 text-5xl font-bold">of goodness</h1>
-        <h3 className=" font-sans mt-3 w-2/5">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur
-          ipsam velit ipsa dolore magnam! Facilis esse quas quisquam iste
-          voluptas necessitatibus ea pariatur exercitationem placeat,
-          repudiandae provident. Asperiores, recusandae quis?
-        </h3>
-        <Link href="#products-section ">
-          <button className=" transition p-2 m-3 ml-1  hover:bg-yellow-800 active:bg-yellow-700 outline-dashed bg-transparent rounded-xl hover:scale-105 ">
+      <div className="absolute  text-white md:ml-24 md:my-16 h-auto lg:mt-44 lg:mb-2  md:w-2/5   ">
+        <h1 className="hidden md:block md:text-5xl font-bold">
+          Make more moments
+        </h1>
+        <h1 className="hidden md:block mt-2 md:text-5xl font-bold">
+          of goodness
+        </h1>
+        <h1 className="md:hidden font-bold m-9 text-2xl text-center ">
+          Welcome to Choco App (Mobile)
+        </h1>
+        <div>
+          <h3 className="hidden md:block font-sans mt-3 w-auto">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur
+            ipsam velit ipsa dolore magnam! Facilis esse quas quisquam iste
+            voluptaslaceat, repudiandae provident. Asperiores, recusandae quis?
+          </h3>
+          {/* <h4 className="">Welcome to Choco App</h4> */}
+        </div>
+        <Link
+          className=" flex items-center justify-center md:block"
+          href="#products-section"
+        >
+          <button className=" transition p-2 md:m-3 ml-1  hover:bg-yellow-800 active:bg-yellow-700 outline-dashed bg-transparent rounded-xl hover:scale-105 ">
             Shop now
           </button>
         </Link>
@@ -25,9 +37,9 @@ const Hero = () => {
       <Image
         className=""
         src={background}
-        style={{ objectFit: "cover" }}
+        style={{ objectFit: "contain" }}
         alt="Hero image"
-        loading="eager"
+        priority
       />
     </div>
   );

@@ -18,19 +18,19 @@ const Newsletter = () => {
   };
   return (
     <>
-      <div className="flex justify-center items-center m-16">
+      <div className=" hidden md:flex justify-center w-auto my-16">
         <div className="flex flex-col w-1/2 h-80 items-center justify-center gap-3 rounded-xl bg-cardimg bg-cover bg-no-repeat bg-bottom  ">
-          <h1 className=" font-extrabold  text-slate-100 text-3xl items-center">
+          <h1 className=" font-extrabold  text-slate-100 text-3xl text-center">
             Stay Updated with Newsletter
           </h1>
-          <section className="w-5/6   text-gray-200 ">
-            <h3 className="ml-2 font-medium">
+          <section className="w-auto overflow-hidden   text-gray-200 ">
+            <h3 className="text-center font-medium">
               Get the latest news,exclusive offers,and delicious updates
-              deliverd right to your
+              deliverd right to your inbox
             </h3>
-            <h3 className="ml-32">
+            <h3 className="text-center">
               {" "}
-              inbox with our choclate and cake newsletter.
+              with our choclate and cake newsletter.
             </h3>
           </section>
           <input

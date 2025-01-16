@@ -74,6 +74,8 @@ export default function delivery_personsPage() {
         </>
       ) : (
         <div className=" bg-slate-800-50 overflow-x-hidden overflow-y-scroll   no-scrollbar max-h-[640px] w-full text-gray-300 p-6">
+          <Delivery_personDialog />
+
           {warehouses.map((item) => {
             return (
               <div
@@ -93,9 +95,7 @@ export default function delivery_personsPage() {
             );
           })}
           <div className="flex justify-end items-center  ">
-            <div className="">
-              <Delivery_personDialog />
-            </div>
+            <div className=""></div>
           </div>
         </div>
       )}

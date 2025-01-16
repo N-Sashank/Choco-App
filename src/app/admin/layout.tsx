@@ -61,14 +61,16 @@ function adminLayout({ children }: { children: React.ReactNode }) {
         i.active = false;
       }
     });
-    console.log(items1);
     setitems(items1);
   };
 
   return (
     <>
-      <div id="menubar" className=" bg-stone-500 h-screen w-screen flex ">
-        <div className="  bg-stone-900 w-1/5 h-screen p-4">
+      <div
+        id="menubar"
+        className=" bg-stone-500 min-h-screen max-h-[200vh] w-screen flex "
+      >
+        <div className="  bg-stone-900 w-56 lg:w-1/5  p-4">
           <div className="">
             <div className=" mb-10 flex gap-3 items-center ">
               {" "}
@@ -92,7 +94,7 @@ function adminLayout({ children }: { children: React.ReactNode }) {
                       : "rounded-full text-slate-300 flex justify-start gap-3 items-center p-3 active:bg-stone-800 hover:bg-stone-700"
                   }
                 >
-                  <item.icon className="text-stone-400" />
+                  <item.icon className="hidden lg:block text-stone-400" />
                   <h4>{item.label}</h4>
                 </Link>
               );

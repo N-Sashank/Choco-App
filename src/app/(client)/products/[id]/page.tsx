@@ -23,6 +23,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { toast } from "@/hooks/use-toast";
+import Footer from "../../client-components/footer";
 
 const Single_productPage = () => {
   const params = useParams();
@@ -35,8 +36,7 @@ const Single_productPage = () => {
   }
   useEffect(() => {
     getData();
-  }); //[]--------------
-
+  }, []);
   const [product, setproduct] = useState({
     id: 1,
     name: "",
@@ -97,7 +97,7 @@ const Single_productPage = () => {
     <>
       <Header />
 
-      <div className="flex mx-auto mt-4 rounded-xl gap-8 justify-center items-center w-5/6 h-auto p-10 bg-stone-100">
+      <div className="mx-auto  my-20  block md:flex   rounded-xl gap-8 justify-center items-center w-5/6 h-auto p-10  bg-stone-100">
         <div>
           <Image
             className="rounded-xl text-transparent drop-shadow-2xl"
@@ -110,10 +110,10 @@ const Single_productPage = () => {
           />
         </div>
         <div>
-          <h3 className="text-yellow-700">BRAND NAME</h3>
+          <h3 className="m-3 md:m-0 text-yellow-700">BRAND NAME</h3>
           <h1 className="font-bold text-yellow-900 text-2xl">{product.name}</h1>
           <p className="ml-1 text-yellow-700  text-sm ">4.5 rating</p>
-          <h4 className="w-96 text-secondary-foreground text-black my-3">
+          <h4 className="md:w-96 text-secondary-foreground text-black my-3">
             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugiat,
             labore molestias officiis laborum est a! Consectetur veniam vero
             obcaecati enim iure ipsa nostrum tempora doloremque cupiditate,
@@ -122,7 +122,7 @@ const Single_productPage = () => {
           <div className="">
             <Form {...form}>
               <form className="" onSubmit={form.handleSubmit(onSubmit)}>
-                <div className="flex gap-4">
+                <div className="block my-3 md:flex gap-4">
                   <FormField
                     control={form.control}
                     name="address"
@@ -211,6 +211,7 @@ const Single_productPage = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };

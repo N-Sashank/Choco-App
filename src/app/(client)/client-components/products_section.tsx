@@ -72,7 +72,7 @@ const Products_section = () => {
               return (
                 <div
                   key={product.id}
-                  className="w-auto h-auto   transition outline-dashed hover:scale-105 hover:bg-yellow-100 outline-yellow-500  rounded p-4"
+                  className="w-auto max-h-96   transition outline-dashed hover:scale-105 hover:bg-yellow-100 outline-yellow-500  rounded p-4"
                 >
                   <div className="">
                     <Image

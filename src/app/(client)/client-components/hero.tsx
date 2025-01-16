@@ -9,7 +9,6 @@ import { usePathname } from "next/navigation";
 
 const Hero = () => {
   const { data: session } = useSession();
-  const pathname = usePathname();
 
   return (
     <div className="">
@@ -17,7 +16,7 @@ const Hero = () => {
         <div className="md:hidden m-3">
           {session ? (
             <div className=" transition hover:scale-100">
-              <Link href={`/api/auth/signout?callbackUrl=${pathname}`}>
+              <Link href={`/api/auth/signout?callbackUrl=${"/"}`}>
                 <Button className=" rounded-full border-2 transition hover:outline hover:bg-yellow-600 mr-4 w-50 ">
                   SignOut
                 </Button>
@@ -25,7 +24,7 @@ const Hero = () => {
             </div>
           ) : (
             <div className=" transition hover:scale-100 ">
-              <Link href={`/api/auth/signin?callbackUrl=${pathname}`}>
+              <Link href={`/api/auth/signin?callbackUrl=${"/"}`}>
                 <Button className=" rounded-full border-2 transition hover:outline  hover:bg-yellow-600 mr-4 w-50 ">
                   SignIn
                 </Button>

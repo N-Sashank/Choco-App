@@ -76,6 +76,8 @@ export default function InventoryPage() {
         </>
       ) : (
         <div className=" bg-slate-800-50 overflow-x-hidden overflow-y-scroll no-scrollbar   max-h-[640px] w-full text-gray-300 p-6">
+          <InventoryDialog />
+
           {warehouses.map((item) => {
             return (
               <div
@@ -98,9 +100,7 @@ export default function InventoryPage() {
             <h1 className="mx-auto text-xl mt-4 mb-2">Available Products</h1>
             <ProductsTableComponent />
           </div>
-          <div className="flex justify-end items-center  ">
-            <InventoryDialog />
-          </div>
+          <div className="flex justify-end items-center  "></div>
         </div>
       )}
     </>

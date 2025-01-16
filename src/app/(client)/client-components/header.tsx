@@ -50,13 +50,19 @@ const Header = () => {
               <Link href={"http://localhost:3000/"}>Home</Link>
             </li>
             <li className="text-yellow-700 hover:text-yellow-900 hover:underline  transition  ">
-              <Link href={"#products-section"}>Best Selling </Link>
+              <Link href={"http://localhost:3000/#products-section"}>
+                Best Selling{" "}
+              </Link>
             </li>
             <li className="text-yellow-700 hover:text-yellow-900 hover:underline transition  ">
-              <Link href={"#products-section"}>Offers</Link>
+              <Link href={"http://localhost:3000/#products-section"}>
+                Offers
+              </Link>
             </li>
             <li className="text-yellow-700 hover:text-yellow-900 hover:underline  transition ">
-              <Link href={"#products-section"}>Orders </Link>
+              <Link href={"http://localhost:3000/#products-section"}>
+                Orders{" "}
+              </Link>
             </li>
           </ul>
           {session ? (

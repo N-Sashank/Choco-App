@@ -26,6 +26,13 @@ import { toast } from "@/hooks/use-toast";
 import Footer from "../../client-components/footer";
 
 const Single_productPage = () => {
+  const [product, setproduct] = useState({
+    id: 0,
+    name: "",
+    image: "",
+    description: "",
+    price: 0,
+  });
   const params = useParams();
   const id = params.id;
 
@@ -37,13 +44,6 @@ const Single_productPage = () => {
   useEffect(() => {
     getData();
   }, []);
-  const [product, setproduct] = useState({
-    id: 1,
-    name: "",
-    image: "",
-    description: "",
-    price: 0,
-  });
 
   const form = useForm<z.infer<typeof orderSchema>>({
     resolver: zodResolver(orderSchema),

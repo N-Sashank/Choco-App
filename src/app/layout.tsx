@@ -4,6 +4,7 @@ import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import { getServerSession } from "next-auth";
 import AuthProvider from "@/providers/authProvider";
+import ProgressProvider from "@/providers/ProgressProvider";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -33,7 +34,7 @@ export default async function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} scroll-smooth antialiased`}
       >
         <AuthProvider session={session}>
-          {children}
+          <ProgressProvider> {children}</ProgressProvider>
           <Toaster />
         </AuthProvider>
       </body>

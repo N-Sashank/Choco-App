@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { useSession } from "next-auth/react";
-import { usePathname } from "next/navigation";
+// import { usePathname } from "next/navigation";
 
 const Hero = () => {
   const { data: session } = useSession();
@@ -53,7 +53,7 @@ const Hero = () => {
           className=" flex items-center justify-center md:block"
           href="#products-section"
         >
-          <button className=" transition p-2 md:m-3 ml-1 hidden md:block hover:bg-yellow-800 active:bg-yellow-700 outline-dashed bg-transparent rounded-xl hover:scale-105 ">
+          <button className=" transition p-2 md:m-3 md:ml-0 ml-1 hidden md:block hover:bg-yellow-800 active:bg-yellow-700 outline-dashed bg-transparent rounded-xl hover:scale-105 ">
             Shop now
           </button>
         </Link>
@@ -62,7 +62,7 @@ const Hero = () => {
       <Image
         className=""
         src={background}
-        style={{ objectFit: "contain" }}
+        style={{ objectFit: "cover" }}
         alt="Hero image"
         priority
       />

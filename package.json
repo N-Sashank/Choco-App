@@ -31,6 +31,8 @@
     "net": "^1.0.2",
     "next": "15.0.3",
     "next-auth": "^4.24.10",
+    "next-nprogress-bar": "^2.4.3",
+    "nextjs-progressbar": "^0.0.16",
     "perf_hooks": "^0.0.1",
     "postgres": "^3.4.5",
     "react": "^18.3.1",

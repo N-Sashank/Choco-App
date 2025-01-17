@@ -35,8 +35,9 @@ const Header = () => {
           {isAdmin === "admin" ? (
             <Button className="rounded-full  hover:bg-yellow-600 active:bg-yellow-700 hover:outline outline-yellow-800 transition hover:scale-100 mx-auto text-center  m-2">
               <Link
+                prefetch
                 href={"http://localhost:3000/admin"}
-                className="size-auto text-black "
+                className="size-auto w-32 h-10 flex items-center justify-center text-black "
               >
                 Admin Dashboard
               </Link>
@@ -67,19 +68,25 @@ const Header = () => {
           </ul>
           {session ? (
             <div className=" transition hover:scale-100">
-              <Link href={`/api/auth/signout?callbackUrl=${pathname}`}>
-                <Button className=" rounded-full border-2 transition hover:outline hover:bg-yellow-600 mr-4 w-50 ">
+              <Button className=" rounded-full border-2 transition hover:outline hover:bg-yellow-600 mr-4 ">
+                <Link
+                  className=" h-10 flex justify-center items-center w-20 "
+                  href={`/api/auth/signout?callbackUrl=${pathname}`}
+                >
                   SignOut
-                </Button>
-              </Link>
+                </Link>
+              </Button>
             </div>
           ) : (
             <div className=" transition hover:scale-100">
-              <Link href={`/api/auth/signin?callbackUrl=${pathname}`}>
-                <Button className=" rounded-full border-2 transition hover:outline  hover:bg-yellow-600 mr-4 w-50 ">
+              <Button className=" rounded-full border-2 transition hover:outline  hover:bg-yellow-600 mr-4  ">
+                <Link
+                  className=" h-10 flex justify-center items-center w-20 "
+                  href={`/api/auth/signin?callbackUrl=${pathname}`}
+                >
                   SignIn
-                </Button>
-              </Link>
+                </Link>
+              </Button>
             </div>
           )}
         </div>

@@ -1,3 +1,4 @@
+"use client";
 import Hero from "./client-components/hero";
 import Newsletter from "./client-components/Newsletter";
 import Footer from "./client-components/footer";

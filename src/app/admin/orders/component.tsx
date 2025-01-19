@@ -25,7 +25,7 @@ const TableComponent = () => {
     return data;
   }
 
-  const { data, error, isLoading } = useSWR(
+  const { data, isLoading } = useSWR(
     "http://localhost:3000/api/orders",
     getData
   );

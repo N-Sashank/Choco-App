@@ -72,7 +72,7 @@ const Single_productPage = () => {
           console.log(response);
         });
       console.log(result);
-    } catch (error: any) {
+    } catch (error: Error | any) {
       toast({
         variant: "destructive",
         title: error.response.data.message,

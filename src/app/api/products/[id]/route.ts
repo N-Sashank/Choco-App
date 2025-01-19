@@ -6,7 +6,7 @@ export async function GET(
   request: Request,
   { params }: { params: { id: string } }
 ) {
-  const id = params.id;
+  const id: string = params.id;
   try {
     const product = await db
       .select()
@@ -19,7 +19,7 @@ export async function GET(
     } else {
       return Response.json(product[0], { status: 201 });
     }
-  } catch (error) {
-    return Response.json({ message: "db call failed" }, { status: 500 });
+  } catch (e) {
+    return Response.json({ message: "db call failed", e }, { status: 500 });
   }
 }

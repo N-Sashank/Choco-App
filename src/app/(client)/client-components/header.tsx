@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import axios from "axios";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useSession } from "next-auth/react";
 import useSWR from "swr";
 
@@ -15,10 +15,7 @@ const Header = () => {
 
     return result;
   };
-  const { data, error, isLoading } = useSWR(
-    "http://localhost:3000/api/user_role_check",
-    getData
-  );
+  const { data } = useSWR("http://localhost:3000/api/user_role_check", getData);
   isAdmin = data?.data?.token?.role;
 
   const { data: session } = useSession();

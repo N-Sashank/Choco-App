@@ -24,7 +24,7 @@ export async function POST(request: Request) {
   }
 }
 
-export async function GET(response: Response) {
+export async function GET() {
   try {
     const warehousesList = await db.select().from(warehousesTable);
     return Response.json(warehousesList);

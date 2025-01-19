@@ -48,7 +48,7 @@ export async function POST(request: Request) {
   }
 
   let ErrorString: string = "";
-  let finalOrder: any;
+  let finalOrder;
   let orderstatus = false;
   try {
     finalOrder = await db.transaction(async (tx) => {
@@ -56,7 +56,7 @@ export async function POST(request: Request) {
         .insert(OrdersTable)
         .values({
           ...validatedata,
-          // @ts-ignore
+          // @ts-expect-error
           userId: Number(session.token.id),
           price: foundProducts[0].price * validatedata.quantity,
           status: "received",
@@ -141,6 +141,7 @@ export async function POST(request: Request) {
   if (orderstatus) {
     return Response.json({ message: "Order Created" });
   }
+  console.log(finalOrder);
 }
 
 export async function GET() {

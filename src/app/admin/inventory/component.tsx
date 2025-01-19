@@ -13,7 +13,7 @@ const TableComponent = ({ title }: { title: string }) => {
 
   let Inventories: InventoryInterface[] = [];
 
-  const { data, error, isLoading } = useSWR(
+  const { data, isLoading } = useSWR(
     "http://localhost:3000/api/inventory",
     getData
   );

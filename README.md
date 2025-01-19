@@ -11,5 +11,5 @@ Tech Stack: Next.js (Frontend & Backend), NextAuth, Supabase PostgreSQL, Drizzle
 --User authentication: Implemented user and admin authentication and authorization using Next Auth.
 
 TODO's
--make every page responsive
+
 -perform optimizations for every page

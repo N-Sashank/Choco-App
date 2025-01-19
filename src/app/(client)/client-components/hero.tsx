@@ -1,37 +1,13 @@
-"use client";
 import React from "react";
 import background from "./chocolate.jpg";
 import Image from "next/image";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { useSession } from "next-auth/react";
-// import { usePathname } from "next/navigation";
 
 const Hero = () => {
-  const { data: session } = useSession();
-
   return (
     <div className="">
       <div className="absolute  text-white md:ml-24 md:my-16 h-auto lg:mt-44 lg:mb-2  md:w-2/5   ">
-        <div className="md:hidden m-3">
-          {session ? (
-            <div className=" transition hover:scale-100">
-              <Link href={`/api/auth/signout?callbackUrl=${"/"}`}>
-                <Button className=" rounded-full border-2 transition hover:outline hover:bg-yellow-600 mr-4 w-50 ">
-                  SignOut
-                </Button>
-              </Link>
-            </div>
-          ) : (
-            <div className=" transition hover:scale-100 ">
-              <Link href={`/api/auth/signin?callbackUrl=${"/"}`}>
-                <Button className=" rounded-full border-2 transition hover:outline  hover:bg-yellow-600 mr-4 w-50 ">
-                  SignIn
-                </Button>
-              </Link>
-            </div>
-          )}
-        </div>
+        <div className="md:hidden m-3"></div>
         <h1 className="hidden md:block md:text-5xl font-bold">
           Make more moments
         </h1>

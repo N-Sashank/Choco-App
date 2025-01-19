@@ -1,24 +1,28 @@
-"use client";
 import { Button } from "@/components/ui/button";
-import axios from "axios";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
-import { useSession } from "next-auth/react";
-import useSWR from "swr";
-const Header = () => {
-  let isAdmin: string = "";
+import { getServerSession } from "next-auth";
+import { db } from "@/db";
+import { eq } from "drizzle-orm";
 
-  const getData = async () => {
-    const result = await axios.get("http://localhost:3000/api/user_role_check");
+import { usersTable } from "@/db/schema";
+const Header = async () => {
+  const session = await getServerSession();
+  const email = session?.user?.email;
 
-    return result;
-  };
-  const { data } = useSWR("http://localhost:3000/api/user_role_check", getData);
-  isAdmin = data?.data?.token?.role;
+  let isAdmin: String = "";
 
-  const { data: session } = useSession();
-  const pathname = usePathname();
+  try {
+    const status = await db
+      .select({ role: usersTable.role })
+      .from(usersTable)
+      .where(eq(usersTable.email, email as string));
+    isAdmin = status[0].role;
+  } catch (error) {
+    console.log(error);
+  }
+
   return (
     <>
       <div className=" w-full">
@@ -62,12 +66,12 @@ const Header = () => {
               </Link>
             </li>
           </ul>
-          {session ? (
+          {(await session) ? (
             <div className=" transition hover:scale-100">
               <Button className=" rounded-full border-2 transition hover:outline hover:bg-yellow-600 mr-4 ">
                 <Link
                   className=" h-10 flex justify-center items-center w-20 "
-                  href={`/api/auth/signout?callbackUrl=${pathname}`}
+                  href={`/api/auth/signout?callbackUrl=${"/"}`}
                 >
                   SignOut
                 </Link>
@@ -78,7 +82,7 @@ const Header = () => {
               <Button className=" rounded-full border-2 transition hover:outline  hover:bg-yellow-600 mr-4  ">
                 <Link
                   className=" h-10 flex justify-center items-center w-20 "
-                  href={`/api/auth/signin?callbackUrl=${pathname}`}
+                  href={`/api/auth/signin?callbackUrl=${"/"}`}
                 >
                   SignIn
                 </Link>

@@ -17,7 +17,7 @@ const TableComponent = () => {
     const data = axios.get("http://localhost:3000/api/warehouses");
     return data;
   }
-  const { data, error, isLoading } = useSWR(
+  const { data, isLoading } = useSWR(
     "http://localhost:3000/api/warehouses",
     getData
   );

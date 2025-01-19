@@ -3,7 +3,7 @@ import axios from "axios";
 import TableComponent from "./component";
 import Delivery_personDialog from "../_components/dialogD";
 import useSWR from "swr";
-export default function delivery_personsPage() {
+export default function Delivery_personsPage() {
   interface warehousesInterface {
     id: string;
     name: string;

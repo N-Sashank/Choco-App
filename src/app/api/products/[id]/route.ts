@@ -4,9 +4,9 @@ import { eq } from "drizzle-orm";
 
 export async function GET(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
-  const id: string = params.id;
+  const id: string = (await params).id;
   try {
     const product = await db
       .select()

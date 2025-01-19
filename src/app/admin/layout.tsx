@@ -11,7 +11,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 
-function adminLayout({ children }: { children: React.ReactNode }) {
+function AdminLayout({ children }: { children: React.ReactNode }) {
   const [items, setitems] = useState([
     {
       icon: HomeIcon,
@@ -112,4 +112,4 @@ function adminLayout({ children }: { children: React.ReactNode }) {
     </>
   );
 }
-export default adminLayout;
+export default AdminLayout;

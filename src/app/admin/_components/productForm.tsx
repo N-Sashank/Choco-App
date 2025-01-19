@@ -20,7 +20,7 @@ import { useToast } from "@/hooks/use-toast";
 
 export type FormValues = z.input<typeof clientProductSchema>;
 
-const productForm = () => {
+const ProductForm = () => {
   const { toast } = useToast();
   const form = useForm<z.infer<typeof clientProductSchema>>({
     resolver: zodResolver(clientProductSchema),
@@ -134,4 +134,4 @@ const productForm = () => {
   );
 };
 
-export default productForm;
+export default ProductForm;

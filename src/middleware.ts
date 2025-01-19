@@ -1,6 +1,5 @@
 import withAuth from "next-auth/middleware";
 
-
 export default withAuth({
   callbacks: {
     authorized: ({ token, req }) => {
@@ -8,9 +7,9 @@ export default withAuth({
         if (token?.role === "admin") {
           return true;
         } else {
-          console.log("NOT ADMIN", token);
+          // console.log("NOT ADMIN", token);
 
-         return false;
+          return false;
         }
       } else {
         return true;

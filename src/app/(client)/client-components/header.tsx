@@ -6,7 +6,6 @@ import { usePathname } from "next/navigation";
 import React from "react";
 import { useSession } from "next-auth/react";
 import useSWR from "swr";
-
 const Header = () => {
   let isAdmin: string = "";
 

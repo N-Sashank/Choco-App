@@ -1,8 +1,6 @@
-"use client";
 import axios from "axios";
-import useSWR from "swr";
 
-const TableComponent = ({ title }: { title: string }) => {
+const TableComponent = async ({ title }: { title: string }) => {
   interface InventoryInterface {
     id: string;
     sku: string;
@@ -12,16 +10,11 @@ const TableComponent = ({ title }: { title: string }) => {
   }
 
   let Inventories: InventoryInterface[] = [];
-
-  const { data, isLoading } = useSWR(
-    "http://localhost:3000/api/inventory",
-    getData
-  );
-  Inventories = data?.data;
-  async function getData() {
-    const inventory = await axios.get("http://localhost:3000/api/inventory");
-    return inventory;
-  }
+  let isLoading = true;
+  const result = await axios.get("http://localhost:3000/api/inventory");
+  // console.log(result.data);
+  Inventories = result.data;
+  isLoading = false;
   return (
     <>
       {isLoading ? (

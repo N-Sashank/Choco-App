@@ -1,7 +1,5 @@
-"use client";
 import axios from "axios";
-import useSWR from "swr";
-const TableComponent = ({ title }: { title: string }) => {
+const TableComponent = async ({ title }: { title: string }) => {
   interface AgentInterface {
     id: string;
     name: string;
@@ -10,17 +8,12 @@ const TableComponent = ({ title }: { title: string }) => {
   }
   let AgentsList: AgentInterface[] = [];
 
-  const getData = async () => {
-    const res = await axios.get("http://localhost:3000/api/delivery_persons");
-    return res;
-  };
+  let isLoading = true;
+  const result = await axios.get("http://localhost:3000/api/delivery_persons");
+  AgentsList = result?.data;
+  // console.log(AgentsList);
+  isLoading = false;
 
-  const { data, isLoading } = useSWR(
-    "http://localhost:3000/api/delivery_persons",
-    getData
-  );
-
-  AgentsList = data?.data;
   return (
     <>
       {isLoading ? (

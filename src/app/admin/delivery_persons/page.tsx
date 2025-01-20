@@ -1,9 +1,7 @@
-"use client";
 import axios from "axios";
 import TableComponent from "./component";
 import Delivery_personDialog from "../_components/dialogD";
-import useSWR from "swr";
-export default function Delivery_personsPage() {
+export default async function Delivery_personsPage() {
   interface warehousesInterface {
     id: string;
     name: string;
@@ -12,16 +10,11 @@ export default function Delivery_personsPage() {
     createdat: string;
   }
   let warehouses: warehousesInterface[] = [];
-
-  function getData() {
-    const data = axios.get("http://localhost:3000/api/warehouses");
-    return data;
-  }
-  const { data, isLoading } = useSWR(
-    "http://localhost:3000/api/warehouses",
-    getData
-  );
-  warehouses = data?.data;
+  let isLoading = true;
+  const result = await axios.get("http://localhost:3000/api/warehouses");
+  warehouses = result?.data;
+  // console.log(result?.data);
+  isLoading = false;
 
   return (
     <>

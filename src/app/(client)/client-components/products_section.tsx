@@ -1,12 +1,10 @@
-"use client";
 import Image from "next/image";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import axios from "axios";
-import useSWR from "swr";
 
-const Products_section = () => {
+const Products_section = async () => {
   interface ProductsInterface {
     id: string;
     name: string;
@@ -15,17 +13,11 @@ const Products_section = () => {
     description: string;
     price: string;
   }
-  let products: ProductsInterface[] = [];
 
-  async function getData() {
-    const data = await axios.get("http://localhost:3000/api/products");
-    return data;
-  }
-  const { data, isLoading } = useSWR(
-    "http://localhost:3000/api/products",
-    getData
-  );
-  products = data?.data;
+  let isLoading = true;
+  const result = await axios.get("http://localhost:3000/api/products");
+  let products: ProductsInterface[] = await result?.data;
+  isLoading = false;
 
   return (
     <>

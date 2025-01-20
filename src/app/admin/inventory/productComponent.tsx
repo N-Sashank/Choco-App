@@ -1,8 +1,5 @@
-"use client";
 import axios from "axios";
-import useSWR from "swr";
-
-const ProductsTableComponent = () => {
+const ProductsTableComponent = async () => {
   interface ProductsInterface {
     id: string;
     name: string;
@@ -13,18 +10,11 @@ const ProductsTableComponent = () => {
     price: string;
   }
   let productsList: ProductsInterface[] = [];
-
-  async function getData() {
-    const data = await axios.get("http://localhost:3000/api/products");
-
-    return data;
-  }
-  const { data, isLoading } = useSWR(
-    "http://localhost:3000/api/products",
-    getData
-  );
-  productsList = data?.data;
-
+  let isLoading = true;
+  const result = await axios.get("http://localhost:3000/api/products");
+  // console.log(result?.data);
+  productsList = result.data;
+  isLoading = false;
   return (
     <>
       {isLoading ? (

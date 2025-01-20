@@ -1,11 +1,9 @@
-"use client";
 import axios from "axios";
 import TableComponent from "./component";
 import InventoryDialog from "../_components/dialogI";
 import ProductsTableComponent from "./productComponent";
-import useSWR from "swr";
 
-export default function InventoryPage() {
+export default async function InventoryPage() {
   interface warehousesInterface {
     id: string;
     name: string;
@@ -14,16 +12,11 @@ export default function InventoryPage() {
     createdat: string;
   }
   let warehouses: warehousesInterface[] = [];
-
-  function getData() {
-    const data = axios.get("http://localhost:3000/api/warehouses");
-    return data;
-  }
-  const { data, isLoading } = useSWR(
-    "http://localhost:3000/api/warehouses",
-    getData
-  );
-  warehouses = data?.data;
+  let isLoading = true;
+  const result = await axios.get("http://localhost:3000/api/warehouses");
+  warehouses = result?.data;
+  // console.log(result?.data);
+  isLoading = false;
 
   return (
     <>

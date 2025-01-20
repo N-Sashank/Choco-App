@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   Blocks,
   CircleCheck,
@@ -10,59 +10,60 @@ import {
   Warehouse,
 } from "lucide-react";
 import Link from "next/link";
+import { number } from "zod";
 
 function AdminLayout({ children }: { children: React.ReactNode }) {
-  const [items, setitems] = useState([
+  const [activeItem, setActiveItem] = useState(Number || null);
+  const items = [
     {
+      id: 1,
       icon: HomeIcon,
       label: "Dashboard",
       url: "/admin",
-      active: true,
     },
     {
+      id: 2,
       icon: Layers,
       label: "Products",
       url: "/admin/products",
-      active: false,
     },
     {
+      id: 3,
       icon: Warehouse,
       label: "Warehouses",
       url: "/admin/warehouses",
-      active: false,
     },
     {
+      id: 4,
       icon: Users,
       label: "Delivery_persons",
       url: "/admin/delivery_persons",
-      active: false,
     },
     {
+      id: 5,
       icon: ShoppingCart,
       label: "Orders",
       url: "/admin/orders",
-      active: false,
     },
 
     {
+      id: 6,
       icon: Blocks,
       label: "Inventory",
       url: "/admin/inventory",
-      active: false,
     },
-  ]);
-
-  const changeStatus = (data: string) => {
-    const items1 = [...items];
-    items1.map((i) => {
-      if (i.label === data) {
-        i.active = true;
-      } else {
-        i.active = false;
-      }
-    });
-    setitems(items1);
+  ];
+  const changeStatus = (id: number) => {
+    setActiveItem(id);
+    localStorage.setItem("activeSidebarItem", String(id));
   };
+
+  useEffect(() => {
+    const savedActiveItem = localStorage.getItem("activeSidebarItem");
+    if (savedActiveItem) {
+      setActiveItem(Number(savedActiveItem));
+    }
+  }, []);
 
   return (
     <>
@@ -84,15 +85,16 @@ function AdminLayout({ children }: { children: React.ReactNode }) {
               return (
                 <Link
                   key={item.label}
-                  onClick={() => {
-                    changeStatus(item.label);
+                  onClick={(e) => {
+                    changeStatus(item.id);
                   }}
                   href={item.url}
-                  className={
-                    item.active
-                      ? "bg-stone-700 rounded-full text-amber-100 flex justify-start gap-3 items-center p-3 active:bg-stone-800 hover:bg-stone-700"
-                      : "rounded-full text-slate-300 flex justify-start gap-3 items-center p-3 active:bg-stone-800 hover:bg-stone-700"
-                  }
+                  className={` 
+                    ${
+                      activeItem === item.id
+                        ? "bg-stone-700 rounded-full text-amber-100 flex justify-start gap-3 items-center p-3 active:bg-stone-800 hover:bg-stone-700"
+                        : "rounded-full text-slate-300 flex justify-start gap-3 items-center p-3 active:bg-stone-800 hover:bg-stone-700"
+                    }`}
                 >
                   <item.icon className="hidden lg:block text-stone-400" />
                   <h4>{item.label}</h4>

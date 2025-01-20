@@ -29,7 +29,7 @@
     "drizzle-orm": "^0.36.3",
     "lucide-react": "^0.460.0",
     "net": "^1.0.2",
-    "next": "15.0.3",
+    "next": "^15.1.5",
     "next-auth": "^4.24.10",
     "next-nprogress-bar": "^2.4.3",
     "nextjs-progressbar": "^0.0.16",

@@ -1,28 +1,17 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import React from "react";
 import { getServerSession } from "next-auth";
-import { db } from "@/db";
-import { eq } from "drizzle-orm";
+import axios from "axios";
 
-import { usersTable } from "@/db/schema";
 const Header = async () => {
   const session = await getServerSession();
-  const email = session?.user?.email;
+  const email = await session?.user?.email;
 
-  let isAdmin: String = "";
-
-  try {
-    const status = await db
-      .select({ role: usersTable.role })
-      .from(usersTable)
-      .where(eq(usersTable.email, email as string));
-    isAdmin = status[0].role;
-  } catch (error) {
-    console.log(error);
-  }
-
+  let result = await axios.post("http://localhost:3000/api/roleCheck", {
+    email,
+  });
+  const isAdmin = result.data.isAdmin;
   return (
     <>
       <div className=" w-full">

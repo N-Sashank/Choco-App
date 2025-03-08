@@ -24,6 +24,8 @@ import Link from "next/link";
 import { toast } from "@/hooks/use-toast";
 import useSWR from "swr";
 import Script from "next/script";
+import { notFound } from "next/navigation";
+import { not } from "drizzle-orm";
 
 declare global{
   interface Window{
@@ -51,10 +53,10 @@ const Single_productComponent = () => {
     `http://localhost:3000/api/products/${id}`,
     getData
   );
-  if (error) {
-    console.log(error);
-  }
-
+if(error && error.status === 404){
+  notFound()
+  
+}
   product = data?.data;
 
   const form = useForm<z.infer<typeof orderSchema>>({

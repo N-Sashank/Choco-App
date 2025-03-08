@@ -15,7 +15,7 @@ export async function GET(
       .limit(1);
 
     if (!product.length) {
-      return Response.json({ message: " product not found" }, { status: 201 });
+      return Response.json({ message: " product not found" }, { status: 404 });
     } else {
       return Response.json(product[0], { status: 201 });
     }

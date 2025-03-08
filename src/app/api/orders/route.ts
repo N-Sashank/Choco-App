@@ -11,10 +11,17 @@ import {
 import { orderSchema } from "@/validator/orderSchema";
 import { getServerSession } from "next-auth";
 import { eq, isNull, and, desc, inArray } from "drizzle-orm";
+import Razorpay from "razorpay";
+import { trackDynamic } from "next/dist/server/route-modules/app-route/module";
+
+const razorpay = new Razorpay({
+  key_id: process.env.RAZORPAY_ID,
+  key_secret: process.env.RAZORPAY_SECRET,
+});
+
 
 export async function POST(request: Request) {
   const session = await getServerSession(authOptions);
-  console.log("session", session);
 
   if (!session) {
     return Response.json({ message: "Not allowed" }, { status: 401 });
@@ -46,7 +53,7 @@ export async function POST(request: Request) {
   if (!foundProducts.length) {
     return Response.json({ message: "Product not found" }, { status: 400 });
   }
-
+const total_amount= foundProducts[0].price * validatedata.quantity;
   let ErrorString: string = "";
   let finalOrder;
   let orderstatus = false;
@@ -138,10 +145,21 @@ export async function POST(request: Request) {
       { status: 500 }
     );
   }
-  if (orderstatus) {
-    return Response.json({ message: "Order Created" });
+  try {
+    const order=await razorpay.orders.create({
+      amount:total_amount*100,
+      currency:"INR",
+      receipt:"RECIEPT_"+Math.random().toString(36).substring(7)
+     })
+     return Response.json({ OrderId:order.id as string, message: "ORDER CREATED" });
+
+
+  } catch (error) {
+    console.log("error while payment ",error)
+    return Response.json({message:"payment error ",error},{status:500})
+    
   }
-  console.log(finalOrder);
+
 }
 
 export async function GET() {

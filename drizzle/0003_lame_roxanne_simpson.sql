@@ -1,1 +1,0 @@
-CREATE INDEX IF NOT EXISTS "pincodeIdx" ON "warehouses" USING btree ("pincode");

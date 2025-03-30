@@ -12,7 +12,6 @@ import { orderSchema } from "@/validator/orderSchema";
 import { getServerSession } from "next-auth";
 import { eq, isNull, and, desc, inArray } from "drizzle-orm";
 import Razorpay from "razorpay";
-import { trackDynamic } from "next/dist/server/route-modules/app-route/module";
 
 const razorpay = new Razorpay({
   key_id: process.env.RAZORPAY_ID,
@@ -151,7 +150,7 @@ const total_amount= foundProducts[0].price * validatedata.quantity;
       currency:"INR",
       receipt:"RECIEPT_"+Math.random().toString(36).substring(7)
      })
-     return Response.json({ OrderId:order.id as string, message: "ORDER CREATED" });
+     return Response.json({ OrderId:order.id as string ,reciept:order.receipt, message: "ORDER CREATED" });
 
 
   } catch (error) {

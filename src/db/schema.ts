@@ -1,4 +1,5 @@
 import {
+  bigserial,
   integer,
   pgTable,
   serial,

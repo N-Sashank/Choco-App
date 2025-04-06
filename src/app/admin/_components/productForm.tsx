@@ -35,12 +35,30 @@ const ProductForm = () => {
 
   const handleSubmit = (values: FormValues) => {
     try {
+      // Get the file from the input element
+      const fileInput = document.querySelector('input[type="file"]') as HTMLInputElement;
+      const file = fileInput?.files?.[0];
+
+      if (!file) {
+        toast({
+          variant: "destructive",
+          title: "Please select an image",
+        });
+        return;
+      }
+
+      // Create a FormData object
+      const formData = new FormData();
+      formData.append("name", values.name.trim());
+      formData.append("description", values.description.trim());
+      formData.append("price", values.price.toString());
+      formData.append("image", file);
+
       axios
-        .postForm("http://localhost:3000/api/products", {
-          name: values.name.trim(),
-          description: values.description.trim(),
-          image: (values.image as FileList)[0],
-          price: values.price,
+        .post("http://localhost:3000/api/products", formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
         })
         .then(function (response) {
           const date = Date();

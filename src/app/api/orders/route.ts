@@ -13,11 +13,17 @@ import { getServerSession } from "next-auth";
 import { eq, isNull, and, desc, inArray } from "drizzle-orm";
 import Razorpay from "razorpay";
 
-const razorpay = new Razorpay({
-  key_id: process.env.RAZORPAY_ID,
-  key_secret: process.env.RAZORPAY_SECRET,
-});
+// Check if environment variables are defined
+if (!process.env.RAZORPAY_ID || !process.env.RAZORPAY_SECRET) {
+  console.error(
+    "Razorpay credentials are not properly configured in environment variables"
+  );
+}
 
+const razorpay = new Razorpay({
+  key_id: process.env.RAZORPAY_ID || "",
+  key_secret: process.env.RAZORPAY_SECRET || "",
+});
 
 export async function POST(request: Request) {
   const session = await getServerSession(authOptions);
@@ -52,7 +58,7 @@ export async function POST(request: Request) {
   if (!foundProducts.length) {
     return Response.json({ message: "Product not found" }, { status: 400 });
   }
-const total_amount= foundProducts[0].price * validatedata.quantity;
+  const total_amount = foundProducts[0].price * validatedata.quantity;
   let ErrorString: string = "";
   let finalOrder;
   let orderstatus = false;
@@ -145,20 +151,34 @@ const total_amount= foundProducts[0].price * validatedata.quantity;
     );
   }
   try {
-    const order=await razorpay.orders.create({
-      amount:total_amount*100,
-      currency:"INR",
-      receipt:"RECIEPT_"+Math.random().toString(36).substring(7)
-     })
-     return Response.json({ OrderId:order.id as string ,reciept:order.receipt, message: "ORDER CREATED" });
+    if (!process.env.RAZORPAY_ID || !process.env.RAZORPAY_SECRET) {
+      return Response.json(
+        { message: "Payment service not configured properly" },
+        { status: 500 }
+      );
+    }
 
+    const order = await razorpay.orders.create({
+      amount: total_amount * 100,
+      currency: "INR",
+      receipt: "RECIEPT_" + Math.random().toString(36).substring(7),
+    });
 
+    return Response.json({
+      OrderId: order.id as string,
+      reciept: order.receipt,
+      message: "ORDER CREATED",
+    });
   } catch (error) {
-    console.log("error while payment ",error)
-    return Response.json({message:"payment error ",error},{status:500})
-    
+    console.log("error while payment ", error);
+    return Response.json(
+      {
+        message: "Payment service error",
+        error: error instanceof Error ? error.message : String(error),
+      },
+      { status: 500 }
+    );
   }
-
 }
 
 export async function GET() {

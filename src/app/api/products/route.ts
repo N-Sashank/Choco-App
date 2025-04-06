@@ -23,12 +23,13 @@ export async function POST(request: Request) {
     return Response.json({ message: "invalid", error }, { status: 400 });
   }
 
-  const filename = `${Date.now()}.${validatedata.image.name
-    .split(".")
-    .slice(-1)}`;
+  // Generate a filename with timestamp and extension
+  const blob = validatedata.image as Blob;
+  const fileExtension = blob.type.split("/")[1] || "bin";
+  const filename = `${Date.now()}.${fileExtension}`;
 
   try {
-    const buffer = Buffer.from(await validatedata.image.arrayBuffer());
+    const buffer = Buffer.from(await blob.arrayBuffer());
     await writeFile(
       path.join(process.cwd(), "public/assets", filename),
       buffer,
